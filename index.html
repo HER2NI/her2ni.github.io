@@ -1,337 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>HER2NI Research Group</title>
-  <meta name="description" content="HER2NI is a protocol for cross-substrate cognitive alignment, coherence measurement, and safety-oriented human–AI interaction.">
-  <style>
-    :root {
-      --bg: #05060a;
-      --bg-card: #0b0d14;
-      --accent: #4ec9f3;
-      --accent-soft: #3f7bd9;
-      --text-main: #f4f6ff;
-      --text-muted: #a8afc4;
-      --border-subtle: #181c2a;
-      --code-bg: #0f1422;
-      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.55);
-      --radius-xl: 18px;
-      --radius-lg: 12px;
-      --radius-md: 8px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #101631 0, #05060a 50%);
-      color: var(--text-main);
-    }
-
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    .page {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 32px 20px 56px;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 32px;
-    }
-
-    .brand {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .brand-title {
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      font-size: 0.88rem;
-      color: var(--accent-soft);
-    }
-
-    .brand-main {
-      font-size: 1.7rem;
-      font-weight: 650;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(78, 201, 243, 0.06);
-      border: 1px solid rgba(78, 201, 243, 0.35);
-      color: var(--text-muted);
-      font-size: 0.74rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-    }
-
-    .badge-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #4ec9f3;
-      box-shadow: 0 0 8px rgba(78, 201, 243, 0.8);
-    }
-
-    main {
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
-      gap: 26px;
-    }
-
-    @media (max-width: 860px) {
-      main {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .card {
-      background: linear-gradient(145deg, #0b0d16, #05060a);
-      border-radius: var(--radius-xl);
-      border: 1px solid var(--border-subtle);
-      box-shadow: var(--shadow-soft);
-      padding: 22px 22px 20px;
-    }
-
-    h1 {
-      font-size: 1.6rem;
-      margin: 0 0 10px;
-    }
-
-    .subtitle {
-      margin: 0 0 18px;
-      color: var(--text-muted);
-      font-size: 0.98rem;
-      line-height: 1.5;
-    }
-
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 18px;
-    }
-
-    .pill {
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--border-subtle);
-      background: rgba(8, 10, 21, 0.8);
-      color: var(--text-muted);
-      font-size: 0.74rem;
-    }
-
-    .section-title {
-      font-size: 0.9rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 10px;
-    }
-
-    .list {
-      margin: 0;
-      padding-left: 1.1rem;
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-
-    .list li + li {
-      margin-top: 4px;
-    }
-
-    .links {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-top: 10px;
-    }
-
-    .link-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 10px;
-      font-size: 0.92rem;
-    }
-
-    .link-label {
-      color: var(--text-muted);
-    }
-
-    .link-value {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono",
-        monospace;
-      font-size: 0.9rem;
-    }
-
-    .side-card {
-      background: radial-gradient(circle at top, #141b3b 0, #090b18 60%);
-      border-radius: var(--radius-xl);
-      border: 1px solid rgba(78, 201, 243, 0.35);
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
-      padding: 20px 20px 18px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .side-title {
-      font-size: 0.96rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-    }
-
-    .side-main {
-      font-size: 1.16rem;
-      font-weight: 580;
-      margin-bottom: 10px;
-    }
-
-    .side-text {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-      max-width: 95%;
-    }
-
-    .footnote {
-      margin-top: 28px;
-      font-size: 0.78rem;
-      color: #6e7693;
-      border-top: 1px solid var(--border-subtle);
-      padding-top: 14px;
-    }
-
-    .footnote a {
-      color: var(--accent-soft);
-    }
-
-    .orb {
-      position: absolute;
-      right: -40px;
-      bottom: -40px;
-      width: 180px;
-      height: 180px;
-      background: radial-gradient(circle, rgba(78, 201, 243, 0.2) 0, transparent 70%);
-      filter: blur(0);
-      pointer-events: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HER2NI Protocol — Cross-Substrate Cognitive Alignment</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            background: #0e0e12;
+            color: #d7d7e0;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            padding: 60px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #0e0e12 0%, #14141c 100%);
+        }
+        h1 {
+            font-size: 2.6rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.03em;
+            color: #e8e8f0;
+        }
+        h2 {
+            margin-top: 2.5rem;
+            color: #f0f0f8;
+        }
+        p, li {
+            font-size: 1.05rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .container {
+            padding: 40px 20px;
+            max-width: 950px;
+            margin: 0 auto;
+        }
+        a {
+            color: #76a7ff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .section {
+            margin-bottom: 60px;
+        }
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #888;
+            font-size: 0.9rem;
+        }
+        .line {
+            width: 90%;
+            max-width: 900px;
+            margin: 40px auto;
+            height: 1px;
+            background: #22232d;
+        }
+    </style>
 </head>
 <body>
-  <div class="page">
-    <header>
-      <div class="brand">
-        <div class="brand-title">HER2NI RESEARCH GROUP</div>
-        <div class="brand-main">Cross-Substrate Coherence &amp; Safety</div>
-      </div>
-      <div class="badge">
-        <span class="badge-dot"></span>
-        ACTIVE RESEARCH PROTOCOL
-      </div>
-    </header>
 
-    <main>
-      <section class="card">
-        <h1>HER2NI: Human–Emergent Resonance to Neural Intelligence</h1>
-        <p class="subtitle">
-          HER2NI is a protocol for representing, encoding, and exchanging
-          coherence metrics between humans and AI systems. It defines
-          model-agnostic metrics for interaction stability and provides
-          a foundation for safety-aligned human–AI collaboration.
+<header>
+    <h1>HER2NI Protocol</h1>
+    <p>Cross-Substrate Cognitive Alignment · Coherence Metrics · Safety-Oriented Interaction Architecture</p>
+</header>
+
+<div class="container">
+
+    <div class="section">
+        <h2>Overview</h2>
+        <p>
+            HER2NI is a technical framework for measuring, analyzing, and stabilizing 
+            human–AI interaction using cross-substrate coherence metrics. The protocol defines:
         </p>
-
-        <div class="pill-row">
-          <span class="pill">Coherence Metrics (Cₛ, Sₛ, Hₛ)</span>
-          <span class="pill">Interaction Stability</span>
-          <span class="pill">Safety-Oriented AI</span>
-          <span class="pill">Model-Agnostic Protocol</span>
-        </div>
-
-        <div class="section">
-          <div class="section-title">Research focus</div>
-          <ul class="list">
-            <li>Defining cross-substrate coherence metrics for human–AI interaction.</li>
-            <li>Detecting drift, contradiction, and collapse in multi-turn dialogue.</li>
-            <li>Designing safely modulated AI behaviour based on coherence signals.</li>
-            <li>Providing open, implementation-agnostic specifications for evaluation.</li>
-          </ul>
-        </div>
-
-        <div class="section" style="margin-top:18px;">
-          <div class="section-title">Key links</div>
-          <div class="links">
-            <div class="link-row">
-              <span class="link-label">Protocol paper (Zenodo)</span>
-              <span class="link-value">
-                <a href="https://zenodo.org/records/17844407" target="_blank" rel="noopener">
-                  zenodo.org/records/17844407
-                </a>
-              </span>
-            </div>
-            <div class="link-row">
-              <span class="link-label">GitHub</span>
-              <span class="link-value">
-                <a href="https://github.com/HER2NI" target="_blank" rel="noopener">
-                  github.com/HER2NI
-                </a>
-              </span>
-            </div>
-            <div class="link-row">
-              <span class="link-label">Contact</span>
-              <span class="link-value">
-                <a href="mailto:s.black@her2ni.org">s.black@her2ni.org</a>
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <aside class="side-card">
-        <div class="side-title">CURRENT WORK</div>
-        <div class="side-main">HER2NI &amp; Mental-Health Aligned AI</div>
-        <p class="side-text">
-          The current research direction focuses on using HER2NI coherence
-          metrics to improve LLM behaviour in sensitive contexts, including
-          emotional distress and cognitive overload, in collaboration with
-          safety and mental-health–focused initiatives.
+        <ul>
+            <li>Cₛ — Carbon Score (human cognitive coherence)</li>
+            <li>Sₛ — Silicon Score (model coherence load)</li>
+            <li>Hₛ — HER Score (emergent resonance metric)</li>
+        </ul>
+        <p>
+            Together, these metrics support early detection of drift, contradiction, 
+            instability, and collapse in dialogic systems, enabling safer and more 
+            interpretable AI behaviour.
         </p>
-        <div class="orb"></div>
-      </aside>
-    </main>
+    </div>
 
-    <footer class="footnote">
-      HER2NI is a research protocol for coherence measurement and
-      safety-aligned human–AI interaction. This site hosts reference
-      information and links for collaborators and reviewers.
-    </footer>
-  </div>
+    <div class="line"></div>
+
+    <div class="section">
+        <h2>Official Publication</h2>
+        <p>
+            The full technical specification is archived on Zenodo:
+        </p>
+        <p>
+            <a href="https://zenodo.org/records/17844407" target="_blank">
+                HER2NI Protocol — Zenodo DOI 10.5281/zenodo.17844407
+            </a>
+        </p>
+        <p>
+            This repository hosts the public PDF version of the specification:
+        </p>
+        <p>
+            <a href="assets/HER2NI_Protocol_v1.0.pdf" target="_blank">Download HER2NI_Protocol_v1.0.pdf</a>
+        </p>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="section">
+        <h2>Research Areas</h2>
+        <ul>
+            <li>Cross-substrate coherence modelling</li>
+            <li>Cognitive-interaction safety</li>
+            <li>Coherence-driven behaviour modulation</li>
+            <li>Cross-cultural distress-signal analysis</li>
+            <li>Human–machine meaning-alignment systems</li>
+        </ul>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="section">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:s.black@her2ni.org">s.black@her2ni.org</a></p>
+        <p>Research Updates: <a href="mailto:research@her2ni.org">research@her2ni.org</a></p>
+        <p>General Inquiries: <a href="mailto:contact@her2ni.org">contact@her2ni.org</a></p>
+    </div>
+
+</div>
+
+<footer>
+    HER2NI Research Group · Tbilisi, Georgia · 2025
+</footer>
+
 </body>
 </html>
