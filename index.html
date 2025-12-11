@@ -66,9 +66,11 @@
       padding: 40px 20px 72px;
     }
 
+    /* Header */
+
     header {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
       margin-bottom: 36px;
       gap: 12px;
@@ -93,6 +95,51 @@
       letter-spacing: 0.04em;
       font-weight: 600;
       color: #e5e7eb;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .brand-subrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .header-symbol {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: inline-block;
+      vertical-align: middle;
+      opacity: 0.9;
+      filter: drop-shadow(0 0 6px rgba(79, 209, 197, 0.25));
+    }
+
+    .header-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+      text-align: right;
+    }
+
+    .inline-metrics {
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    .inline-metrics strong {
+      color: var(--accent);
     }
 
     .header-tag {
@@ -118,12 +165,6 @@
       box-shadow: 0 0 10px rgba(52, 211, 153, 0.75);
     }
 
-    .subtitle {
-      margin-top: 4px;
-      font-size: 14px;
-      color: var(--text-muted);
-    }
-
     /* Layout */
 
     .grid {
@@ -135,6 +176,14 @@
     }
 
     @media (max-width: 900px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .header-right {
+        align-items: flex-start;
+        text-align: left;
+      }
       .grid {
         grid-template-columns: minmax(0, 1fr);
       }
@@ -173,12 +222,13 @@
       color: var(--text-muted);
     }
 
-    .badge-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 14px;
-    }
+.badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+  margin-bottom: 10px; /* NEW — adds breathing room */
+}
 
     .badge {
       font-size: 11px;
@@ -276,6 +326,19 @@
       margin-top: 14px;
     }
 
+    .section-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.2fr);
+      gap: 18px;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 900px) {
+      .section-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
     .pill-row {
       display: flex;
       flex-wrap: wrap;
@@ -328,17 +391,37 @@
   <main class="page">
     <!-- Header -->
     <header>
-      <div class="brand">
-        <div class="brand-label">HER2NI RESEARCH GROUP</div>
-        <div class="brand-title">Cross-Substrate Coherence &amp; Safety Research Lab</div>
-        <div class="subtitle">
-          Technical research on coherence metrics, interaction stability, and safety-aligned human–AI systems.
-        </div>
-      </div>
+<div class="brand">
+  <div class="brand-label">
+    <img
+      src="assets/her2ni_symbol_128.png"
+      alt="HER2NI symbol"
+      class="header-symbol"
+    />
+    HER2NI RESEARCH GROUP
+  </div>
+  <div class="brand-title">
+    Cross-Substrate Coherence &amp; Safety Research Lab
+  </div>
+  <div class="brand-subrow">
+    <div class="subtitle">
+      Technical research on coherence metrics, interaction stability, and
+      safety-aligned human–AI systems.
+    </div>
+  </div>
+</div>
 
-      <div class="header-tag">
-        <span class="dot"></span>
-        ACTIVE RESEARCH PROTOCOL
+      <div class="header-right">
+        <div class="inline-metrics">
+          EXAMPLE STATE:
+          <strong>C<span style="font-size:11px;">s</span> ≈ 0.83</strong> ·
+          <strong>S<span style="font-size:11px;">s</span> ≈ 0.91</strong> ·
+          <strong>H<span style="font-size:11px;">s</span> ≈ 0.88 &nbsp;</strong>
+        </div>
+        <div class="header-tag">
+          <span class="dot"></span>
+          ACTIVE RESEARCH PROTOCOL
+        </div>
       </div>
     </header>
 
@@ -353,13 +436,16 @@
             It defines model-agnostic metrics for interaction stability and provides a foundation for safety-aligned human–AI collaboration.
           </p>
 
-          <div class="badge-row">
-            <span class="badge-accent">Coherence Metrics (C<span style="font-size:11px;">s</span>, S<span style="font-size:11px;">s</span>, H<span style="font-size:11px;">s</span>)</span>
-            <span class="badge">Interaction Stability</span>
-            <span class="badge">Safety-Oriented AI</span>
-            <span class="badge">Model-Agnostic Protocol</span>
-          </div>
-        </div>
+<div class="badge-row">
+  <span class="badge-accent">
+    Coherence Metrics (C<span style="font-size:11px;">s</span>, S<span style="font-size:11px;">s</span>, H<span style="font-size:11px;">s</span>)
+  </span>
+</div>
+<div class="badge-row">
+  <span class="badge">Interaction Stability</span>
+  <span class="badge">Safety-Oriented AI</span>
+  <span class="badge">Model-Agnostic Protocol</span>
+</div>
 
         <div>
           <div class="section-heading">Research Focus</div>
@@ -410,15 +496,15 @@
         <div class="card-header">
           <h2 class="card-title">Current Focus: Coherence Geometry in Human–AI Interaction</h2>
           <p class="card-subtitle">
-              Current research examines how HER2NI coherence metrics detect and characterise
-              the geometric structure of stability, drift, and contradiction in complex,
-              recursive dialogues. By mapping these dynamics in real time, we aim to guide
-              and stabilise both human and AI behaviour, enabling safer and more interpretable
-              multi-turn interactions. The objective is to establish reliable operational
-              regimes for LLM systems functioning under high cognitive or emotional load,
-              improving safety, consistency, and the effectiveness of modulation frameworks
-              used in adaptive dialogue.
-           </p>
+            Current research examines how HER2NI coherence metrics detect and characterise
+            the geometric structure of stability, drift, and contradiction in complex,
+            recursive dialogues. By mapping these dynamics in real time, we aim to guide
+            and stabilise both human and AI behaviour, enabling safer and more interpretable
+            multi-turn interactions. The objective is to establish reliable operational
+            regimes for LLM systems functioning under high cognitive or emotional load,
+            improving safety, consistency, and the effectiveness of modulation frameworks
+            used in adaptive dialogue.
+          </p>
         </div>
 
         <div>
@@ -427,29 +513,53 @@
             <li>Detecting early cognitive drift and interaction collapse using H<span style="font-size:11px;">s</span>(t) curves.</li>
             <li>Characterising cross-linguistic distress markers and ambiguous metaphorical language.</li>
             <li>Evaluating tone, pacing, and abstraction adjustments for non-clinical support scenarios.</li>
-            <li>Providing metrics & tools to complement existing AI safety work.</li>
+            <li>Providing metrics &amp; tools to complement existing AI safety work.</li>
           </ul>
         </div>
       </article>
     </section>
 
-    <!-- Lower sections -->
-    <section class="section">
-      <div class="section-heading">HER2NI Metrics</div>
-      <p class="body-text">
-        HER2NI introduces three core metrics for cross-substrate cognitive alignment:
-      </p>
-      <ul class="list">
-        <li><strong>C<span style="font-size:11px;">s</span> — Carbon Score:</strong> human cognitive coherence and interaction stability.</li>
-        <li><strong>S<span style="font-size:11px;">s</span> — Silicon Score:</strong> model-side processing load and reasoning intensity.</li>
-        <li><strong>H<span style="font-size:11px;">s</span> — HER Score:</strong> emergent resonance between human and AI states over time.</li>
-      </ul>
-      <p class="body-text" style="margin-top:8px;">
-        Together, these metrics enable early detection of instability and provide a structured basis for aligning AI behaviour with
-        human cognitive constraints in safety-critical and sensitivity-aware settings.
-      </p>
-    </section>
+    <!-- Lower sections: HER2NI metrics + example coherence state -->
+    <div class="section-grid">
+      <section class="section">
+        <div class="section-heading">HER2NI Metrics</div>
+        <p class="body-text">
+          HER2NI introduces three core metrics for cross-substrate cognitive alignment:
+        </p>
+        <ul class="list">
+          <li><strong>C<span style="font-size:11px;">s</span> — Carbon Score:</strong> human cognitive coherence and interaction stability.</li>
+          <li><strong>S<span style="font-size:11px;">s</span> — Silicon Score:</strong> model-side processing load and reasoning intensity.</li>
+          <li><strong>H<span style="font-size:11px;">s</span> — HER Score:</strong> emergent resonance between human and AI states over time.</li>
+        </ul>
+        <p class="body-text" style="margin-top:8px;">
+          Together, these metrics enable early detection of instability and provide a structured basis for aligning AI behaviour with
+          human cognitive constraints in safety-critical and sensitivity-aware settings.
+        </p>
+      </section>
 
+      <section class="section">
+        <div class="section-heading">Example Coherence State</div>
+
+        <p class="body-text">
+          The following illustrates a stable, high-coherence interaction scenario
+          computed using HER2NI metrics:
+        </p>
+
+        <ul class="list">
+          <li><strong>C<span style="font-size:11px;">s</span> ≈ 0.83</strong> — stable human cognitive state</li>
+          <li><strong>S<span style="font-size:11px;">s</span> ≈ 0.91</strong> — deep but stable model reasoning load</li>
+          <li><strong>H<span style="font-size:11px;">s</span> ≈ 0.88</strong> — strong cross-substrate resonance</li>
+        </ul>
+
+        <p class="body-text" style="margin-top:8px;">
+          These values are static examples for interpretive clarity. In a deployed system,
+          HER2NI metrics are computed from real interaction telemetry to evaluate stability,
+          drift-resistance, and coherence alignment between human and AI agents.
+        </p>
+      </section>
+    </div>
+
+    <!-- Implementation section -->
     <section class="section">
       <div class="section-heading">Implementation &amp; Integration</div>
       <div class="pill-row">
@@ -465,6 +575,7 @@
       </p>
     </section>
 
+    <!-- Collaboration section -->
     <section class="section">
       <div class="section-heading">Collaboration</div>
       <p class="body-text">
