@@ -113,46 +113,43 @@ her2ni demo examples/dialogue_01.json
 
 # Summarize coherence trajectory
 her2ni summarize examples/dialogue_01.json
+```
 
 Example output:
-
+```
 Mean Hs: 0.84
 Max drift event: turn 7
 Collapse risk: none detected
 AOME mode: STABLE_DEEP_REASONING
-
----
-
-Ethical & Safety Framing
+```
+### Ethical & Safety Framing
 
 HER2NI is designed as a measurement and evaluation framework.
-	•	No personally identifiable information (PII) is required or encoded
-	•	Dialogue data should be anonymised at source
-	•	Metrics describe interaction dynamics, not individuals
-	•	Outputs are intended to inform AI safety research, evaluation design,
+- No personally identifiable information (PII) is required or encoded
+- Dialogue data should be anonymised at source
+- Metrics describe interaction dynamics, not individuals
+- Outputs are intended to inform AI safety research, evaluation design,
 and behaviour-modulation studies
 
 Use of HER2NI should comply with applicable research ethics standards
 and data-protection requirements.
 
----
-
-Roadmap (Non-Binding)
+### Roadmap (Non-Binding)
 
 Future versions may explore:
-	•	Improved drift and contradiction proxies
-	•	Cross-linguistic robustness studies
-	•	Visualisation tools for coherence trajectories
-	•	Integration with existing AI evaluation pipelines
+- Improved drift and contradiction proxies
+- Cross-linguistic robustness studies
+- Visualisation tools for coherence trajectories
+- Integration with existing AI evaluation pipelines
 
 These items are out of scope for v0.1.
 
 ---
 
-Key References
-	•	HER2NI Protocol Specification (v1.0)
+## Key References
+- HER2NI Protocol Specification (v1.0)
 https://zenodo.org/records/17844407
-	•	Research Website
+- Research Website
 https://her2ni.org
-	•	Contact
+- Contact
 research@her2ni.org
