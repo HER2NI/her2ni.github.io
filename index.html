@@ -66,7 +66,9 @@
       padding: 40px 20px 72px;
     }
 
-    /* Header */
+    /* ------------------------------------------------------------
+       Header
+    ------------------------------------------------------------ */
 
     header {
       display: flex;
@@ -90,6 +92,17 @@
       opacity: 0.9;
     }
 
+    .header-symbol {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: inline-block;
+      vertical-align: middle;
+      opacity: 0.9;
+      filter: drop-shadow(0 0 6px rgba(79, 209, 197, 0.25));
+    }
+
     .brand-title {
       font-size: 21px;
       letter-spacing: 0.04em;
@@ -105,23 +118,12 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      margin-top: 4px;
+      margin-top: 8px;
     }
 
     .subtitle {
       font-size: 14px;
       color: var(--text-muted);
-    }
-
-    .header-symbol {
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      object-fit: cover;
-      display: inline-block;
-      vertical-align: middle;
-      opacity: 0.9;
-      filter: drop-shadow(0 0 6px rgba(79, 209, 197, 0.25));
     }
 
     .header-right {
@@ -130,6 +132,8 @@
       align-items: flex-end;
       gap: 8px;
       text-align: right;
+      margin-top: 6px;
+      padding-top: 28px;
     }
 
     .inline-metrics {
@@ -157,6 +161,12 @@
       box-shadow: var(--shadow-soft);
     }
 
+    .brand .header-tag {
+      margin-top: 12px;
+      box-shadow: none;
+      align-self: flex-start;
+    }
+
     .dot {
       width: 8px;
       height: 8px;
@@ -165,7 +175,55 @@
       box-shadow: 0 0 10px rgba(52, 211, 153, 0.75);
     }
 
-    /* Layout */
+    /* ------------------------------------------------------------
+       Header: Portal prototype pill
+    ------------------------------------------------------------ */
+
+    .header-proto {
+      margin-top: 8px;
+      padding: 10px 14px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(79, 209, 197, 0.35);
+      background: rgba(15, 23, 42, 0.55);
+      box-shadow: var(--shadow-soft);
+      display: inline-flex;
+      flex-direction: column;
+      gap: 4px;
+      max-width: 360px;
+    }
+
+    .header-proto__title {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #cbd5f5;
+    }
+
+    .header-proto__meta {
+      font-size: 12px;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .header-proto__meta a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .header-proto__meta a:hover {
+      text-decoration: underline;
+    }
+
+    .header-proto__meta .sep {
+      opacity: 0.6;
+    }
+
+    /* ------------------------------------------------------------
+       Layout
+    ------------------------------------------------------------ */
 
     .grid {
       display: grid;
@@ -180,10 +238,14 @@
         flex-direction: column;
         align-items: flex-start;
       }
+
       .header-right {
         align-items: flex-start;
         text-align: left;
+        padding-top: 0;
+        margin-top: 16px;
       }
+
       .grid {
         grid-template-columns: minmax(0, 1fr);
       }
@@ -222,13 +284,13 @@
       color: var(--text-muted);
     }
 
-.badge-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 14px;
-  margin-bottom: 10px; /* NEW — adds breathing room */
-}
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+      margin-bottom: 10px; /* NEW — adds breathing room */
+    }
 
     .badge {
       font-size: 11px;
@@ -391,25 +453,27 @@
   <main class="page">
     <!-- Header -->
     <header>
-<div class="brand">
-  <div class="brand-label">
-    <img
-      src="assets/her2ni_symbol_128.png"
-      alt="HER2NI symbol"
-      class="header-symbol"
-    />
-    HER2NI RESEARCH GROUP
-  </div>
-  <div class="brand-title">
-    Cross-Substrate Coherence &amp; Safety Research Lab
-  </div>
-  <div class="brand-subrow">
-    <div class="subtitle">
-      Technical research on coherence metrics, interaction stability, and
-      safety-aligned human–AI systems.
-    </div>
-  </div>
-</div>
+      <div class="brand">
+        <div class="brand-label">
+          <img src="assets/her2ni_symbol_128.png" alt="HER2NI symbol" class="header-symbol" />
+          HER2NI RESEARCH GROUP
+        </div>
+
+        <div class="brand-title">
+          Cross-Substrate Coherence &amp; Safety Research Lab
+        </div>
+
+        <div class="brand-subrow">
+          <div class="subtitle">
+            Technical research on coherence metrics, interaction stability, and safety-aligned human–AI systems.
+          </div>
+        </div>
+
+        <div class="header-tag">
+          <span class="dot"></span>
+          ACTIVE RESEARCH PROTOCOL
+        </div>
+      </div>
 
       <div class="header-right">
         <div class="inline-metrics">
@@ -418,9 +482,16 @@
           <strong>S<span style="font-size:11px;">s</span> ≈ 0.91</strong> ·
           <strong>H<span style="font-size:11px;">s</span> ≈ 0.88 &nbsp;</strong>
         </div>
-        <div class="header-tag">
-          <span class="dot"></span>
-          ACTIVE RESEARCH PROTOCOL
+
+        <div class="header-proto">
+          <div class="header-proto__title">HER2NI Portal (Prototype)</div>
+          <div class="header-proto__meta">
+            <a href="/portal/" target="_blank" rel="noopener noreferrer">Open</a>
+            <span class="sep">·</span>
+            <span>Local backend required</span>
+            <span class="sep">·</span>
+            <span>Research demo</span>
+          </div>
         </div>
       </div>
     </header>
@@ -436,16 +507,18 @@
             It defines model-agnostic metrics for interaction stability and provides a foundation for safety-aligned human–AI collaboration.
           </p>
 
-<div class="badge-row">
-  <span class="badge-accent">
-    Coherence Metrics (C<span style="font-size:11px;">s</span>, S<span style="font-size:11px;">s</span>, H<span style="font-size:11px;">s</span>)
-  </span>
-</div>
-<div class="badge-row">
-  <span class="badge">Interaction Stability</span>
-  <span class="badge">Safety-Oriented AI</span>
-  <span class="badge">Model-Agnostic Protocol</span>
-</div>
+          <div class="badge-row">
+            <span class="badge-accent">
+              Coherence Metrics (C<span style="font-size:11px;">s</span>, S<span style="font-size:11px;">s</span>, H<span style="font-size:11px;">s</span>)
+            </span>
+          </div>
+
+          <div class="badge-row">
+            <span class="badge">Interaction Stability</span>
+            <span class="badge">Safety-Oriented AI</span>
+            <span class="badge">Model-Agnostic Protocol</span>
+          </div>
+        </div>
 
         <div>
           <div class="section-heading">Research Focus</div>
@@ -466,6 +539,7 @@
               </a>
             </div>
           </div>
+
           <div>
             <div class="link-label">HER2NI Protocol (v1.0)</div>
             <div class="link-value">
@@ -474,32 +548,35 @@
               </a>
             </div>
           </div>
-        <div>
-       <div class="link-label">HER2NI-EXPERIMENTAL (v0.1)</div>
-         <div class="link-value">
-           <a href="assets/HER2NI-EXPERIMENTAL-v0.1.pdf" target="_blank" rel="noopener noreferrer">
-             Download PDF (experimental)
-           </a>
-         </div>
-       <div class="link-value" style="margin-top:4px; font-size:12px; opacity:0.85;">
-         <a href="https://doi.org/10.5281/zenodo.17924574" target="_blank" rel="noopener noreferrer">
-           Digital Object Identifier (DOI)
-         </a>
-       </div>
-       </div>  
-       <div>
-         <div class="link-label">HER-Field (v0.1)</div>
-           <div class="link-value">
-             <a href="assets/her-field-v0.1.pdf" target="_blank" rel="noopener noreferrer">
-               Download PDF (derived)
-             </a>
-           </div>
-        <div class="link-value" style="margin-top:4px; font-size:12px; opacity:0.85;">
-          <a href="https://doi.org/10.5281/zenodo.17919608" target="_blank" rel="noopener noreferrer">
-            Digital Object Identifier (DOI)
-          </a>
-        </div>
-        </div>
+
+          <div>
+            <div class="link-label">HER2NI-EXPERIMENTAL (v0.1)</div>
+            <div class="link-value">
+              <a href="assets/HER2NI-EXPERIMENTAL-v0.1.pdf" target="_blank" rel="noopener noreferrer">
+                Download PDF (experimental)
+              </a>
+            </div>
+            <div class="link-value" style="margin-top:4px; font-size:12px; opacity:0.85;">
+              <a href="https://doi.org/10.5281/zenodo.17924574" target="_blank" rel="noopener noreferrer">
+                Digital Object Identifier (DOI)
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <div class="link-label">HER-Field (v0.1)</div>
+            <div class="link-value">
+              <a href="assets/her-field-v0.1.pdf" target="_blank" rel="noopener noreferrer">
+                Download PDF (derived)
+              </a>
+            </div>
+            <div class="link-value" style="margin-top:4px; font-size:12px; opacity:0.85;">
+              <a href="https://doi.org/10.5281/zenodo.17919608" target="_blank" rel="noopener noreferrer">
+                Digital Object Identifier (DOI)
+              </a>
+            </div>
+          </div>
+
           <div>
             <div class="link-label">GitHub</div>
             <div class="link-value">
@@ -508,6 +585,7 @@
               </a>
             </div>
           </div>
+
           <div>
             <div class="link-label">Contact</div>
             <div class="link-value">
