@@ -146,6 +146,27 @@ These items are out of scope for v0.1.
 
 ---
 
+## Experimental Companion: HER2NI-EXPERIMENTAL v0.1
+
+In addition to the core HER2NI protocol and reference implementation, this repository
+links to an **explicitly non-normative experimental companion document**:
+
+**HER2NI-EXPERIMENTAL v0.1 — Specification Validation & Falsification Schema**
+
+This document:
+- defines explicit **falsification criteria** for HER2NI assumptions,
+- specifies **experimental normative behaviors** for testing,
+- provides **minimal validation and calibration harnesses**,
+- exists to surface failure modes *before* any future normative lock-in.
+
+The experimental document does **not modify** the core HER2NI protocol and is
+intended for research, evaluation, and funding review only.
+
+Canonical DOI:  
+https://doi.org/10.5281/zenodo.17924574
+
+---
+
 ## Key References
 - HER2NI Protocol Specification (v1.0)
 https://zenodo.org/records/17844407
