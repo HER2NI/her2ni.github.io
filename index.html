@@ -356,6 +356,17 @@
       font-size: 13px;
     }
 
+.link-divider {
+  grid-column: 1 / -1;
+  border-top: 1px dashed rgba(148, 163, 184, 0.35);
+  margin: 6px 0 8px;
+}
+
+.link-label.primary {
+  color: #e5e7eb;
+  font-weight: 600;
+}
+
     .link-label {
       color: #9ca3af;
       margin-bottom: 3px;
@@ -532,7 +543,16 @@
 
         <div class="links">
           <div>
-            <div class="link-label">Protocol paper (Zenodo)</div>
+            <div class="link-label primary">HER2NI Protocol (v1.0)</div>
+            <div class="link-value">
+              <a href="assets/HER2NI_Protocol_v1.0.pdf" target="_blank" rel="noopener noreferrer">
+                Download PDF (protocol)
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <div class="link-label primary">Protocol paper (Zenodo)</div>
             <div class="link-value">
               <a href="https://zenodo.org/records/17844407" target="_blank" rel="noopener noreferrer">
                 zenodo.org/records/17844407
@@ -540,14 +560,7 @@
             </div>
           </div>
 
-          <div>
-            <div class="link-label">HER2NI Protocol (v1.0)</div>
-            <div class="link-value">
-              <a href="assets/HER2NI_Protocol_v1.0.pdf" target="_blank" rel="noopener noreferrer">
-                Download PDF (protocol)
-              </a>
-            </div>
-          </div>
+<div class="link-divider"></div>
 
           <div>
             <div class="link-label">HER2NI-A2A (v0.1 · Agent–Agent Profile)</div>
@@ -590,6 +603,8 @@
               </a>
             </div>
           </div>
+
+<div class="link-divider"></div>
 
           <div>
             <div class="link-label">GitHub</div>
