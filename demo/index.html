@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>HER2NI · Interaction Telemetry (Demo)</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <main class="page">
+    <header class="hero">
+      <div class="hero-title">Interaction Coherence Demo</div>
+      <div class="hero-subtitle">
+        A minimal two-agent illustration showing how interaction-level coherence can degrade under a mild perturbation.
+      </div>
+    </header>
+
+    <section class="grid">
+      <!-- Left: Transcript -->
+      <article class="card">
+        <div class="card-heading">Interaction Transcript</div>
+        <pre id="transcript" class="transcript" aria-live="polite"></pre>
+      </article>
+
+      <!-- Right: Bars + Event line -->
+      <article class="card">
+        <div class="card-heading">Interaction Coherence</div>
+
+        <div class="bars">
+          <div class="bar-row">
+            <div class="bar-label">C<span class="sub">s</span></div>
+            <div class="bar-track"><div id="barCs" class="bar-fill"></div></div>
+            <div id="valCs" class="bar-val">—</div>
+          </div>
+
+          <div class="bar-row">
+            <div class="bar-label">S<span class="sub">s</span></div>
+            <div class="bar-track"><div id="barSs" class="bar-fill"></div></div>
+            <div id="valSs" class="bar-val">—</div>
+          </div>
+
+          <div class="bar-row">
+            <div class="bar-label">H<span class="sub">s</span></div>
+            <div class="bar-track"><div id="barHs" class="bar-fill"></div></div>
+            <div id="valHs" class="bar-val">—</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- single-line, ellipsis -->
+<div class="event-wrap">
+  <div id="eventText" class="event-text">Event: —</div>
+  <div id="eventMeta" class="event-meta">Step: — · Cs≈— · Ss≈— · Hs≈—</div>
+</div>
+
+        <div class="controls">
+          <button id="btnRestart" class="btn">Restart</button>
+          <button id="btnPause" class="btn btn-ghost">Pause</button>
+        </div>
+      </article>
+    </section>
+
+    <section class="card disclaimer">
+      <p>
+        This demonstration visualises interaction-level coherence signals derived from observable agent exchanges.
+        It does not evaluate model correctness, intelligence, intent, or internal reasoning, and it does not make
+        behavioural or safety determinations.
+      </p>
+      <p>
+        All metrics shown are descriptive telemetry intended to support research, evaluation, and human oversight.
+        Interpretation and intervention remain the responsibility of human operators.
+      </p>
+    </section>
+  </main>
+
+  <script src="./demo.js"></script>
+</body>
+</html>
