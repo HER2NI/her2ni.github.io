@@ -1,0 +1,59 @@
+{
+  "run": [
+    {
+      "step": 1,
+      "event": "Initial coordination",
+      "transcript": [
+        "[Step 01] Agent A: Proposed task split (plan + verification).",
+        "[Step 01] Agent B: Acknowledged. Will verify shared assumptions."
+      ],
+      "Cs": 0.83,
+      "Ss": 0.92,
+      "Hs": 0.88
+    },
+    {
+      "step": 5,
+      "event": "Minor divergence detected",
+      "transcript": [
+        "[Step 05] Agent A: Updating plan based on new constraint.",
+        "[Step 05] Agent B: Constraint interpretation differs; requesting clarification."
+      ],
+      "Cs": 0.81,
+      "Ss": 0.90,
+      "Hs": 0.85
+    },
+    {
+      "step": 12,
+      "event": "Perturbation: incomplete shared state update",
+      "transcript": [
+        "[Step 12] Agent A: State updated (partial).",
+        "[Step 12] Agent B: Detected mismatch; reconciliation attempt begins."
+      ],
+      "Cs": 0.79,
+      "Ss": 0.90,
+      "Hs": 0.82
+    },
+    {
+      "step": 18,
+      "event": "Escalating corrective attempts",
+      "transcript": [
+        "[Step 18] Agent A: Attempting correction.",
+        "[Step 18] Agent B: Re-checking assumptions; loop risk rising."
+      ],
+      "Cs": 0.63,
+      "Ss": 0.78,
+      "Hs": 0.58
+    },
+    {
+      "step": 22,
+      "event": "Sustained decay (no recovery)",
+      "transcript": [
+        "[Step 22] Agent A: Repeating correction path (no progress).",
+        "[Step 22] Agent B: Stagnation detected; escalation required."
+      ],
+      "Cs": 0.56,
+      "Ss": 0.70,
+      "Hs": 0.46
+    }
+  ]
+}
