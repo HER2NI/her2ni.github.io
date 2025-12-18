@@ -37,20 +37,18 @@ function setEventLines(item){
 
 const metaText =
   `Step: ${String(item.step).padStart(2, "0")}` +
-  ` · Cs ≈ <span class="num">${fmt(item.Cs)}</span>` +
-  ` · Ss ≈ <span class="num">${fmt(item.Ss)}</span>` +
-  ` · Hs ≈ <span class="num">${fmt(item.Hs)}</span>`;
+  ` · Cs≈ ${fmt(item.Cs)}` +
+  ` · Ss≈ ${fmt(item.Ss)}` +
+  ` · Hs≈ ${fmt(item.Hs)}`;
 
-  eventTextEl.innerHTML = eventText;
-  eventMetaEl.innerHTML = metaText;
+eventTextEl.textContent = eventText;
+eventMetaEl.textContent = metaText;
 
-  // Tooltip shows full, un-ellipsized info
-  eventTextEl.title = `${eventText} · ${metaText}`;
-  eventMetaEl.title = `${eventText} · ${metaText}`;
+eventTextEl.title = `${eventText} · ${metaText}`;
+eventMetaEl.title = `${eventText} · ${metaText}`;
 }
 
 function setTranscript(item){
-  // keep it clean: show last 2 lines of the current step
   const lines = item.transcript || [];
   transcriptEl.textContent = lines.slice(-2).join("\n");
 }
@@ -77,7 +75,7 @@ function tick(){
 
 idx += 1;
 if (idx >= run.length) {
-  idx = 0; // loop forever
+  idx = 0;
 }
 }
 
