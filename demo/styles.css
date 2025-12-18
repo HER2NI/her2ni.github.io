@@ -173,6 +173,17 @@ body{
   line-height: 18px;
 }
 
+.event-text,
+.event-meta{
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card{
+  min-width: 0;
+}
+
 .event-meta{
   font-family: var(--mono);
   font-size: 12px;
