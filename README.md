@@ -1,8 +1,11 @@
-# HER2NI Research Group
+# HER2NI — Interaction-Level Coherence Telemetry
 
 HER2NI (Human–Emergent Resonance to Neural Intelligence) is a protocol for cross-substrate cognitive alignment between humans and AI systems.
 
 The HER2NI framework defines model-agnostic coherence metrics for analysing interaction stability, drift, contradiction, and collapse in multi-turn human–AI dialogue, with applications to AI safety, evaluation, and behaviour modulation.
+
+Why this exists
+As AI systems scale, many safety failures emerge from interaction dynamics (loops, escalation, contradiction, loss of grounding) rather than from isolated outputs. HER2NI exists to provide interaction-level observability—a lightweight telemetry layer that surfaces instability earlier, without inferring mental states or replacing policy systems.
 
 ---
 
@@ -99,6 +102,8 @@ The v0.1 implementation is considered **successful** if it meets the following c
 5. **Clear ethical boundaries**
    - README and code comments consistently frame the system as
      non-clinical, evaluative, and research-oriented
+
+HER2NI is expected to fail in some contexts; identifying those failure modes is a primary research goal.
 
 ---
 
