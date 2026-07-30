@@ -194,57 +194,6 @@
     }
 
     /* ------------------------------------------------------------
-       Header: Portal prototype pill
-    ------------------------------------------------------------ */
-
-    .header-proto {
-      margin-top: 8px;
-      padding: 10px 14px;
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(79, 209, 197, 0.35);
-      background: rgba(15, 23, 42, 0.55);
-      box-shadow: var(--shadow-soft);
-      display: inline-flex;
-      flex-direction: column;
-      gap: 4px;
-      max-width: 360px;
-      align-items: center;
-      text-align: center;
-    }
-
-    .header-proto__title {
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: #cbd5f5;
-      text-align: center;
-    }
-
-    .header-proto__meta {
-      font-size: 12px;
-      color: var(--text-muted);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      flex-wrap: wrap;
-      text-align: center;
-      justify-content: center;
-    }
-
-    .header-proto__meta a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    .header-proto__meta a:hover {
-      text-decoration: underline;
-    }
-
-    .header-proto__meta .sep {
-      opacity: 0.6;
-    }
-
-    /* ------------------------------------------------------------
        Layout
     ------------------------------------------------------------ */
 
@@ -539,32 +488,21 @@
 
         <div class="brand-subrow" style="margin-top:10px;">
           <div class="subtitle" style="font-size:13px; opacity:0.92;">
-            <strong>&nbsp;Licensed System:</strong><br>
-            <a href="https://her2.ai" target="_blank" rel="noopener noreferrer">&nbsp;<strong>H.E.R — interaction layer and reduced telemetry system</a>
-            <span style="opacity:0.6;">(patent-pending)</strong></span>
+            <strong>&nbsp;Commercial implementation:</strong><br>
+            <a href="https://her2.ai" target="_blank" rel="noopener noreferrer">&nbsp;<strong>H.E.R — human-facing intelligence and verifiable decision provenance</strong></a>
           </div>
         </div>
       </div>
 
       <div class="header-right">
         <div class="inline-metrics">
-          <p style="font-weight: bold";>EXAMPLE STATE: &nbsp;</p><br class="narrow">
+          <p style="font-weight: bold;">EXAMPLE STATE: &nbsp;</p><br class="narrow">
           <strong>C<span style="font-size:11px;">s</span> ≈ 0.83</strong> ·
           <strong>S<span style="font-size:11px;">s</span> ≈ 0.91</strong> ·
           <strong>H<span style="font-size:11px;">s</span> ≈ 0.88 &nbsp;</strong><br>
           <strong>H<span style="font-size:11px;">s</span>(t) ≈ 0.72 &nbsp;</strong>
         </div>
 
-        <div class="header-proto">
-          <div class="header-proto__title">HER2NI Portal (Prototype)</div>
-          <div class="header-proto__meta">
-            <a href="/portal/" target="_blank" rel="noopener noreferrer">Open</a>
-            <span class="sep">·</span>
-            <span>Local backend required</span>
-            <span class="sep">·</span>
-            <span>Research demo</span>
-          </div>
-        </div>
         <img src="assets/her_helix_256.png" alt="HER helix" class="hero-mark" />
       </div>
     </header>
@@ -582,7 +520,7 @@
 
           <div class="badge-row">
             <span class="badge-accent">
-              HER2NI Coherence (C<span style="font-size:11px;">s</span>, S<span style="font-size:11px;">s</span>, H<span style="font-size:11px;">s</span>) & Trajectory H<span style="font-size:11px;">s</span>(t) Metrics
+              HER2NI Coherence (C<span style="font-size:11px;">s</span>, S<span style="font-size:11px;">s</span>, H<span style="font-size:11px;">s</span>) &amp; Trajectory H<span style="font-size:11px;">s</span>(t) Metrics
             </span>
           </div>
 
@@ -626,23 +564,11 @@
 <div class="link-divider"></div>
 
 <div>
-  <div class="link-label primary">H.E.R — interaction layer and reduced telemetry system</div>
+  <div class="link-label primary">H.E.R — human-facing intelligence and verifiable decision provenance</div>
   <div class="link-value">
     <a href="https://her2.ai" target="_blank" rel="noopener noreferrer">
       HER₂ — her2.ai
     </a>
-  </div>
-</div>
-
-<div>
-  <div class="link-label primary">HER₂™ Forensic Evidence Pack</div>
-  <div class="link-value">
-    <a href="assets/HER2_Forensic_Evidence_Pack_Overview.pdf" target="_blank" rel="noopener noreferrer">
-      Download Overview (PDF) (v0.1)
-    </a>
-  </div>
-  <div class="link-value" style="margin-top:4px; font-size:12px; opacity:0.85;">
-    Patent-pending · case-scoped engagements available
   </div>
 </div>
 
@@ -751,7 +677,7 @@
         </div>
 
         <div style="margin-top:14px;">
-          <div class="section-heading">Operational & Evaluation Context</div>
+          <div class="section-heading">Operational &amp; Evaluation Context</div>
           <ul class="list">
             <li>Designed to complement existing AI risk assessment and governance frameworks.</li>
             <li>Applicable to single-agent, multi-agent, and human–AI interaction settings.</li>
@@ -762,53 +688,18 @@
       </article>
     </section>
 
-    <section class="section" style="margin-top: -6px;">
-      <div class="section-heading"><strong>Demo</strong></div>
-
-        <p class="body-text" style="margin-top:10px;">
-          <a href="https://her2.ai/labs" target="_blank" rel="noopener noreferrer" style="font-weight:600;">
-            H.E.R — Live interaction visualisation →
-          </a>
-          <br>
-          <span style="opacity:0.8;">
-            Visual-only research artefact; does not capture, store, or evaluate live systems.
-          </span>
-        </p>
-
-        <p class="body-text" style="margin-top:10px;">
-          <a href="/demo/" target="_blank" rel="noopener noreferrer" style="font-weight:600;">
-            Open Interaction Telemetry Demo →
-          </a>
-        </p>
-
-        <p class="body-text">
-          A minimal, static interaction-telemetry illustration (mock JSON; no backend).
-          Metrics shown are descriptive only and do not constitute a safety determination.
-        </p>
-    </section>
-
     <section class="section">
-      <div class="section-heading"><strong>Licensed Implementation</strong></div>
+      <div class="section-heading"><strong>Commercial implementation</strong></div>
 
       <p class="body-text">
-        H.E.R is the commercial product family built from HER2NI research: a privacy-bounded interaction layer, AI chat interface, reduced telemetry system, and optional evidence workflow. Forensic or evidence use cases are case-scoped and do not convert H.E.R into a truth, compliance, diagnosis, or authority system.
+        H.E.R is the commercial implementation built from HER2NI research: a provider-neutral human-facing intelligence system that can coordinate independent AI routes, preserve route-level evidence and dissent, bind consequential use to authorised human review, and emit independently verifiable records.
       </p>
 
       <p class="body-text" style="margin-top:8px;">
         <a href="https://her2.ai" target="_blank" rel="noopener noreferrer" style="font-weight:600;">
-          H.E.R — interaction layer and reduced telemetry system (licensed engagement) →
+          H.E.R — human-facing intelligence and verifiable decision provenance →
         </a>
       </p>
-
-      <p class="body-text" style="margin-top:10px;">
-         <a href="assets/HER2_Forensic_Evidence_Pack_Overview.pdf" target="_blank" rel="noopener noreferrer" style="font-weight:600;">
-           HER₂™ — Forensic Evidence Pack Overview (PDF) →
-        </a>
-      </p>
-
-  <p class="body-text" style="margin-top:8px; font-size:12px; opacity:0.9;">
-    Evidence workflows are optional, case-scoped, and do not certify truth, compliance, or legal status.
-  </p>
 </section>
 
 <section class="section" style="
@@ -833,7 +724,7 @@
 
     <!-- Policy Relevance / Why This Matters -->
     <section class="section">
-      <div class="section-heading"><strong>Policy Relevance & Governance Context</strong></div>
+      <div class="section-heading"><strong>Policy Relevance &amp; Governance Context</strong></div>
 
       <p class="body-text">
         HER2NI is designed to support existing public-sector and responsible-AI governance
@@ -947,7 +838,7 @@
     <section class="section">
       <div class="section-heading"><strong>Current Public Framing</strong></div>
       <p class="body-text">
-        Some archived research artifacts use earlier terminology. Current public product and patent framing is structural telemetry and reduced continuity only.
+        Some archived research artifacts use earlier terminology; they remain historical research records and do not describe the current H.E.R implementation.
       </p>
     </section>
 
@@ -971,7 +862,7 @@
     </section>
 
     <footer>
-      <div>© 2026 HER2NI LLC. HER2NI and H.E.R. Patent pending: AU Provisional Patent Application No. 2026904580, filed 12 May 2026. All rights reserved.</div>
+      <div>© 2026 HER2NI LLC. HER2NI® is a registered mark. H.E.R appears without a registration symbol. Australian provisional patent applications filed. All rights reserved.</div>
       <div>Protocol: <a href="https://zenodo.org/records/17844407" target="_blank" rel="noopener noreferrer">HER2NI v1.0</a></div>
     </footer>
   </main>
