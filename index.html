@@ -23,19 +23,20 @@
   <style>
     :root {
       color-scheme: dark;
-      --ink: #eef7f8;
-      --muted: #9aadb4;
-      --quiet: #72878f;
-      --line: rgba(142, 220, 229, 0.16);
-      --line-strong: rgba(98, 226, 242, 0.34);
-      --cyan: #68eff7;
-      --blue: #4a9dff;
-      --surface: #071116;
-      --surface-raised: #0a171d;
-      --background: #03080c;
+      --ink: #f3f7fb;
+      --muted: #a6b1c1;
+      --quiet: #75849a;
+      --line: rgba(105, 167, 230, 0.15);
+      --line-strong: rgba(74, 167, 255, 0.4);
+      --cyan: #91ddff;
+      --blue: #1389ff;
+      --blue-white: #ecfdff;
+      --surface: #06101c;
+      --surface-raised: #071522;
+      --background: #020611;
       --mono: "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
       --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      --content: 1180px;
+      --content: 1320px;
       --radius: 2px;
     }
 
@@ -54,8 +55,9 @@
       margin: 0;
       min-width: 320px;
       background:
-        radial-gradient(circle at 80% 5%, rgba(21, 133, 166, 0.11), transparent 27rem),
-        linear-gradient(180deg, #040b0f 0%, var(--background) 34rem, #020608 100%);
+        radial-gradient(circle at 78% 10%, rgba(19, 137, 255, 0.12), transparent 31rem),
+        radial-gradient(circle at 48% 108%, rgba(27, 91, 175, 0.08), transparent 36rem),
+        linear-gradient(180deg, #020713 0%, var(--background) 38rem, #01040a 100%);
       color: var(--ink);
       font-family: var(--sans);
       font-size: 16px;
@@ -113,7 +115,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 2rem;
-      min-height: 6.5rem;
+      min-height: 4.75rem;
       border-bottom: 1px solid var(--line);
     }
 
@@ -138,6 +140,7 @@
     }
 
     .site-nav a {
+      position: relative;
       color: var(--muted);
       text-decoration: none;
       white-space: nowrap;
@@ -148,94 +151,158 @@
       color: var(--ink);
     }
 
+    .site-nav a:first-child {
+      color: var(--ink);
+    }
+
+    .site-nav a:first-child::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: -1.82rem;
+      left: 0;
+      height: 1px;
+      background: linear-gradient(90deg, var(--cyan), var(--blue));
+      box-shadow: 0 0 8px rgba(72, 184, 255, 0.65);
+    }
+
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.08fr) minmax(18rem, 0.92fr);
-      grid-template-rows: auto auto auto auto auto auto;
-      column-gap: clamp(3rem, 8vw, 8rem);
+      grid-template-columns: minmax(0, 1.15fr) minmax(20rem, 0.85fr);
+      grid-template-rows: repeat(8, auto);
+      column-gap: clamp(3rem, 6vw, 5.5rem);
       align-items: center;
-      min-height: calc(100svh - 6.5rem);
-      padding-block: clamp(4rem, 9vh, 7rem);
+      min-height: 42rem;
+      padding-block: clamp(3.5rem, 7vh, 5rem) clamp(3rem, 6vh, 4.5rem);
       border-bottom: 1px solid var(--line);
     }
 
     .hero-title {
       grid-column: 1;
       grid-row: 1;
+      display: flex;
+      align-items: flex-start;
       margin: 0;
       font-family: var(--mono);
-      font-size: clamp(4rem, 9vw, 7.6rem);
-      font-weight: 500;
-      letter-spacing: -0.085em;
-      line-height: 0.88;
+      font-size: clamp(4.25rem, 7vw, 6.35rem);
+      font-weight: 400;
+      line-height: 0.9;
+    }
+
+    .hero-word {
+      letter-spacing: 0.045em;
+    }
+
+    .hero-tm {
+      margin-top: 0.08em;
+      margin-left: 0.42em;
+      font-size: 0.16em;
+      font-style: normal;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      line-height: 1;
     }
 
     .ring-figure {
       grid-column: 2;
-      grid-row: 1 / span 6;
-      width: min(100%, 31rem);
+      grid-row: 1 / span 8;
+      width: min(100%, 32rem);
       margin: 0;
       justify-self: end;
     }
 
     .ring-figure img {
       width: 100%;
-      aspect-ratio: 1;
-    }
-
-    .ring-figure figcaption {
-      margin-top: 1.25rem;
-      color: var(--quiet);
-      font-family: var(--mono);
-      font-size: 0.67rem;
-      letter-spacing: 0.16em;
-      text-align: center;
-      text-transform: uppercase;
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
     }
 
     .slogan {
       grid-column: 1;
       grid-row: 2;
       max-width: 42rem;
-      margin: clamp(2.6rem, 7vh, 4.75rem) 0 0;
+      margin: 1.7rem 0 0;
       color: var(--cyan);
       font-family: var(--mono);
-      font-size: clamp(0.83rem, 1.5vw, 1rem);
-      letter-spacing: 0.035em;
+      font-size: clamp(0.83rem, 1.25vw, 0.96rem);
+      letter-spacing: 0.055em;
       line-height: 1.6;
+    }
+
+    .hero-rule {
+      position: relative;
+      grid-column: 1;
+      grid-row: 3;
+      width: min(100%, 34rem);
+      height: 1px;
+      margin-top: 1.5rem;
+      background: linear-gradient(90deg, rgba(95, 192, 255, 0.66), rgba(36, 112, 211, 0.2) 58%, transparent);
+    }
+
+    .hero-rule::after {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: 22%;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--blue-white);
+      box-shadow: 0 0 10px rgba(75, 184, 255, 0.95);
     }
 
     .descriptor {
       grid-column: 1;
-      grid-row: 3;
-      max-width: 41rem;
-      margin: 1.25rem 0 0;
-      font-size: clamp(1.32rem, 2.35vw, 2rem);
-      font-weight: 450;
-      letter-spacing: -0.025em;
+      grid-row: 4;
+      max-width: 44rem;
+      margin: 1.55rem 0 0;
+      font-size: clamp(1.35rem, 2vw, 1.7rem);
+      font-weight: 420;
+      letter-spacing: -0.018em;
       line-height: 1.34;
     }
 
-    .hero-copy {
+    .hero-supporting {
       grid-column: 1;
-      grid-row: 4;
-      max-width: 39rem;
-      margin: 1.5rem 0 0;
+      grid-row: 5;
+      max-width: 44rem;
+      margin: 0.65rem 0 0;
+      color: var(--cyan);
+      font-family: var(--mono);
+      font-size: clamp(0.76rem, 1.1vw, 0.88rem);
+      letter-spacing: 0.025em;
+      line-height: 1.55;
+    }
+
+    .hero-explanations {
+      grid-column: 1;
+      grid-row: 6;
+      max-width: 42rem;
+      margin-top: 1rem;
+    }
+
+    .hero-copy {
+      margin: 0;
       color: var(--muted);
-      font-size: 0.98rem;
+      font-size: clamp(0.88rem, 1.1vw, 0.96rem);
+      line-height: 1.55;
+    }
+
+    .hero-copy + .hero-copy {
+      margin-top: 0.75rem;
     }
 
     .principles {
       grid-column: 1;
-      grid-row: 5;
+      grid-row: 7;
       display: flex;
       flex-wrap: wrap;
       gap: 0.45rem 1.3rem;
       max-width: 40rem;
-      margin: 2rem 0 0;
+      margin: 1.55rem 0 0;
       padding: 0;
       list-style: none;
-      color: #c4d5d9;
+      color: #a9d9fb;
       font-family: var(--mono);
       font-size: 0.72rem;
       letter-spacing: 0.06em;
@@ -248,11 +315,11 @@
 
     .hero-actions {
       grid-column: 1;
-      grid-row: 6;
+      grid-row: 8;
       display: flex;
       flex-wrap: wrap;
       gap: 0.75rem;
-      margin-top: 2.25rem;
+      margin-top: 1.75rem;
     }
 
     .button {
@@ -260,9 +327,10 @@
       min-height: 3rem;
       align-items: center;
       justify-content: center;
-      padding: 0.75rem 1.15rem;
+      gap: 1.5rem;
+      padding: 0.75rem 1.2rem;
       border: 1px solid var(--line-strong);
-      background: rgba(8, 22, 28, 0.72);
+      background: rgba(4, 13, 27, 0.78);
       color: var(--ink);
       font-family: var(--mono);
       font-size: 0.69rem;
@@ -273,9 +341,16 @@
     }
 
     .button:first-child {
-      background: var(--cyan);
-      border-color: var(--cyan);
-      color: #031014;
+      background: linear-gradient(180deg, #0872d8, #064fa8);
+      border-color: #5fc8ff;
+      box-shadow: 0 0 18px rgba(19, 137, 255, 0.26), inset 0 1px 0 rgba(236, 253, 255, 0.3);
+      color: #f6fdff;
+    }
+
+    .button-arrow {
+      color: currentColor;
+      font-size: 1rem;
+      line-height: 1;
     }
 
     .button:hover {
@@ -388,6 +463,8 @@
     .ring-study {
       width: min(100%, 25rem);
       margin: 0 auto;
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
     }
 
     .ring-copy p {
@@ -402,30 +479,47 @@
       font-size: 1.28rem;
     }
 
-    .card-grid {
+    .institutional-front {
+      padding-block: clamp(4rem, 7vw, 6rem);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .institutional-front > .section-label {
+      margin-bottom: 1rem;
+    }
+
+    .capability-intro {
+      max-width: 50rem;
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.5vw, 1.15rem);
+    }
+
+    .capability-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 1px;
-      margin-top: 4rem;
+      margin-top: 2.75rem;
       background: var(--line);
       border: 1px solid var(--line);
     }
 
-    .institution-card {
-      min-height: 19rem;
-      padding: clamp(1.6rem, 3.2vw, 2.5rem);
-      background: linear-gradient(155deg, rgba(10, 24, 30, 0.98), rgba(5, 14, 18, 0.98));
+    .capability-block {
+      min-height: 14rem;
+      padding: clamp(1.5rem, 2.4vw, 2rem);
+      background: rgba(5, 15, 28, 0.94);
     }
 
-    .card-number {
-      margin: 0 0 5rem;
-      color: var(--cyan);
+    .capability-code {
+      margin: 0 0 3.5rem;
+      color: var(--blue);
       font-family: var(--mono);
       font-size: 0.65rem;
       letter-spacing: 0.14em;
     }
 
-    .institution-card h3 {
+    .capability-block h3,
+    .trust-item h3 {
       margin: 0;
       font-family: var(--mono);
       font-size: 0.82rem;
@@ -435,10 +529,59 @@
       text-transform: uppercase;
     }
 
-    .institution-card p {
+    .capability-block > p:last-child {
       margin: 1.2rem 0 0;
       color: var(--muted);
-      font-size: 0.94rem;
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    .trust-panel {
+      margin-top: 1.25rem;
+      border: 1px solid var(--line);
+      background: rgba(3, 10, 20, 0.72);
+    }
+
+    .trust-label {
+      margin: 0;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--line);
+      color: var(--blue);
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .trust-item {
+      min-height: 8.5rem;
+      padding: 1.6rem 1.75rem;
+    }
+
+    .trust-item + .trust-item {
+      border-left: 1px solid var(--line);
+    }
+
+    .trust-item h3 {
+      color: #dceaf5;
+      font-size: 0.74rem;
+    }
+
+    .trust-item p {
+      margin: 0.65rem 0 0;
+      color: var(--quiet);
+      font-size: 0.78rem;
+      line-height: 1.5;
     }
 
     .authority {
@@ -643,12 +786,32 @@
       margin: 0;
     }
 
+    @media (max-width: 1100px) {
+      .capability-grid,
+      .trust-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .capability-block:nth-child(3),
+      .capability-block:nth-child(4) {
+        border-top: 1px solid var(--line);
+      }
+
+      .trust-item:nth-child(3) {
+        border-left: 0;
+      }
+
+      .trust-item:nth-child(n + 3) {
+        border-top: 1px solid var(--line);
+      }
+    }
+
     @media (max-width: 960px) {
       .site-header {
         align-items: flex-start;
         flex-direction: column;
         justify-content: center;
-        min-height: 8.25rem;
+        min-height: 7.75rem;
         padding-block: 1.4rem;
       }
 
@@ -660,21 +823,9 @@
       }
 
       .hero {
-        grid-template-columns: minmax(0, 1fr) minmax(15rem, 0.62fr);
+        grid-template-columns: minmax(0, 1fr) minmax(15rem, 0.68fr);
         min-height: auto;
         column-gap: 2.5rem;
-      }
-
-      .card-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .institution-card {
-        min-height: auto;
-      }
-
-      .card-number {
-        margin-bottom: 2.25rem;
       }
 
       .site-footer {
@@ -692,36 +843,41 @@
       }
 
       .site-header {
-        min-height: 7.5rem;
+        min-height: 7.6rem;
         gap: 1rem;
       }
 
       .site-nav {
-        flex-wrap: wrap;
-        gap: 1.1rem;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.65rem 0.55rem;
         overflow-x: visible;
-        font-size: 0.66rem;
+        font-size: 0.62rem;
+      }
+
+      .site-nav a:first-child::after {
+        content: none;
       }
 
       .hero {
         display: flex;
         align-items: stretch;
         flex-direction: column;
-        padding-block: 4rem 5rem;
+        padding-block: 3.4rem 4.5rem;
       }
 
       .hero-title {
-        font-size: clamp(3.6rem, 20vw, 5.8rem);
+        font-size: clamp(3.55rem, 18vw, 4.65rem);
       }
 
       .ring-figure {
-        width: min(86vw, 22rem);
-        margin: 2.6rem auto 0;
+        width: min(80vw, 19.5rem);
+        margin: 2.35rem auto 0;
         order: initial;
       }
 
       .slogan {
-        margin-top: 2.5rem;
+        margin-top: 2.1rem;
       }
 
       .principles {
@@ -735,7 +891,38 @@
       }
 
       .button {
+        width: 100%;
+        min-width: 0;
         justify-content: flex-start;
+      }
+
+      .button-arrow {
+        margin-left: auto;
+      }
+
+      .capability-grid,
+      .trust-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .capability-block {
+        min-height: 0;
+      }
+
+      .capability-block + .capability-block,
+      .capability-block:nth-child(3),
+      .capability-block:nth-child(4) {
+        border-top: 1px solid var(--line);
+      }
+
+      .capability-code {
+        margin-bottom: 2rem;
+      }
+
+      .trust-item + .trust-item,
+      .trust-item:nth-child(3) {
+        border-top: 1px solid var(--line);
+        border-left: 0;
       }
 
       .system-layout,
@@ -778,6 +965,16 @@
       }
     }
 
+    @media (max-width: 360px) {
+      .principles {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-title {
+        font-size: 3.55rem;
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       html {
         scroll-behavior: auto;
@@ -803,16 +1000,22 @@
 
   <main id="main-content">
     <section class="hero shell" id="her" aria-labelledby="hero-title">
-      <h1 class="hero-title" id="hero-title">H.E.R™</h1>
+      <h1 class="hero-title" id="hero-title" aria-label="H.E.R™">
+        <span class="hero-word" aria-hidden="true">H.E.R</span><sup class="hero-tm" aria-hidden="true">™</sup>
+      </h1>
 
       <figure class="ring-figure">
-        <img src="assets/her_ring_mark.svg" alt="H.E.R Ring™: a static dark circle with a thin cyan and electric-blue perimeter" width="640" height="640" />
-        <figcaption>H.E.R Ring™ · persistent visual identity</figcaption>
+        <img src="assets/her_ring_mark.svg" alt="Static H.E.R Ring™ with one blue-white luminous boundary around a dark centre" width="640" height="640" />
       </figure>
 
       <p class="slogan">One human. Many intelligences. Single voice.™</p>
-      <p class="descriptor">Provider-neutral intelligence for accountable institutional decisions.</p>
-      <p class="hero-copy">H.E.R is a provider-neutral human-facing intelligence architecture for governed multi-route analysis, preserved material dissent, synthesis provenance and human decision authority.</p>
+      <div class="hero-rule" aria-hidden="true"></div>
+      <p class="descriptor">Governed intelligence for consequential decisions.</p>
+      <p class="hero-supporting">Independent AI routes. Preserved dissent. Governed synthesis. Human authority. Verifiable provenance.</p>
+      <div class="hero-explanations">
+        <p class="hero-copy">Designed for public-sector and institutional environments where the reasoning process, competing views and authority to act matter as much as the final answer.</p>
+        <p class="hero-copy">H.E.R is a provider-neutral human-facing intelligence architecture that coordinates governed multi-route analysis, preserves material dissent, produces a reviewable synthesis with provenance, and keeps consequential decision authority with the human.</p>
+      </div>
 
       <ul class="principles" aria-label="H.E.R principles">
         <li>Independent reasoning.</li>
@@ -822,11 +1025,60 @@
         <li>Verifiable provenance.</li>
       </ul>
 
-      <div class="hero-actions" aria-label="Primary actions">
-        <a class="button" href="#contact">Institutional pilots</a>
-        <a class="button" href="#how-it-works">How H.E.R works</a>
-        <a class="button" href="#evidence">Evidence &amp; research</a>
+      <nav class="hero-actions" aria-label="Institutional H.E.R pathways">
+        <a class="button" href="#contact">INSTITUTIONAL PILOTS <span class="button-arrow" aria-hidden="true">→</span></a>
+        <a class="button" href="#how-it-works">HOW H.E.R WORKS <span class="button-arrow" aria-hidden="true">→</span></a>
+        <a class="button" href="#evidence">EVIDENCE &amp; RESEARCH <span class="button-arrow" aria-hidden="true">→</span></a>
+      </nav>
+    </section>
+
+    <section class="institutional-front shell" id="institutional" aria-labelledby="institutional-title">
+      <h2 class="section-label" id="institutional-title">H.E.R FOR INSTITUTIONS</h2>
+
+      <div class="capability-grid">
+        <article class="capability-block">
+          <p class="capability-code" aria-hidden="true">A / 04</p>
+          <h3>PUBLIC-SECTOR BY DESIGN</h3>
+          <p>Built for bounded institutional use where privacy, authority, provenance and public accountability matter.</p>
+        </article>
+        <article class="capability-block">
+          <p class="capability-code" aria-hidden="true">B / 04</p>
+          <h3>GOVERNED PILOTS</h3>
+          <p>H.E.R can be evaluated through narrow, reviewable institutional workflows before any wider deployment decision.</p>
+        </article>
+        <article class="capability-block">
+          <p class="capability-code" aria-hidden="true">C / 04</p>
+          <h3>EVIDENCE &amp; AUDITABILITY</h3>
+          <p>H.E.R preserves route-level provenance, material dissent, synthesis treatment and human disposition for later review.</p>
+        </article>
+        <article class="capability-block">
+          <p class="capability-code" aria-hidden="true">D / 04</p>
+          <h3>RESEARCH LINEAGE</h3>
+          <p>H.E.R is grounded in the published HER2NI research and protocol lineage, while the current institutional system is evaluated independently.</p>
+        </article>
       </div>
+
+      <section class="trust-panel" aria-labelledby="trust-title">
+        <h2 class="trust-label" id="trust-title">INSTITUTIONAL PRINCIPLES</h2>
+        <ul class="trust-grid">
+          <li class="trust-item">
+            <h3>HUMAN IN COMMAND</h3>
+            <p>Consequential disposition remains human.</p>
+          </li>
+          <li class="trust-item">
+            <h3>VERIFIABLE PROVENANCE</h3>
+            <p>Route, dissent, synthesis and review evidence can remain inspectable.</p>
+          </li>
+          <li class="trust-item">
+            <h3>PROVIDER NEUTRAL</h3>
+            <p>No model provider owns the decision process.</p>
+          </li>
+          <li class="trust-item">
+            <h3>PUBLIC VALUE</h3>
+            <p>Designed for transparent and accountable institutional use.</p>
+          </li>
+        </ul>
+      </section>
     </section>
 
     <section class="section shell" id="how-it-works" aria-labelledby="how-title">
@@ -852,37 +1104,12 @@
     </section>
 
     <section class="section shell ring-section" aria-labelledby="ring-title">
-      <img class="ring-study" src="assets/her_ring_mark.svg" alt="Static H.E.R Ring™ mark" width="640" height="640" loading="lazy" />
+      <img class="ring-study" src="assets/her_ring_mark.svg" alt="" width="640" height="640" loading="lazy" />
       <div class="ring-copy">
         <p class="section-label">THE H.E.R RING™</p>
         <h2 class="section-title" id="ring-title">A persistent identity for governed interaction.</h2>
         <p>The H.E.R Ring™ is the persistent visual identity of H.E.R.</p>
         <p>Its state is designed to correspond to governed H.E.R interaction conditions rather than random animation.</p>
-        <p>H.E.R may use perceptible state to communicate process conditions such as execution, availability, material difference, synthesis and review while preserving truthful failure and human authority.</p>
-      </div>
-    </section>
-
-    <section class="section shell" id="institutional" aria-labelledby="institutional-title">
-      <p class="section-label">H.E.R FOR INSTITUTIONS</p>
-      <h2 class="section-title" id="institutional-title">When one AI answer is not enough—and the path to an answer matters.</h2>
-      <p class="section-intro">H.E.R is designed for environments where one AI answer is not enough and where the path to an answer matters.</p>
-
-      <div class="card-grid">
-        <article class="institution-card">
-          <p class="card-number">A / 03</p>
-          <h3>PUBLIC-SECTOR ASSURANCE</h3>
-          <p>Bilingual legal and policy-text review, published guidance, research and other bounded public-source workflows.</p>
-        </article>
-        <article class="institution-card">
-          <p class="card-number">B / 03</p>
-          <h3>INSTITUTIONAL DECISION SUPPORT</h3>
-          <p>Independent analytical routes, preserved dissent, governed synthesis and human disposition.</p>
-        </article>
-        <article class="institution-card">
-          <p class="card-number">C / 03</p>
-          <h3>AI ASSURANCE &amp; EVIDENCE</h3>
-          <p>Provider-neutral evaluation, interaction provenance and reviewable execution records.</p>
-        </article>
       </div>
     </section>
 
@@ -894,7 +1121,7 @@
           <p>Agreement is not factual truth.</p>
           <p>Synthesis is not institutional approval.</p>
         </div>
-        <p class="authority-note">H.E.R is designed to preserve those distinctions and keep consequential disposition with an authorised human or institution.</p>
+        <p class="authority-note">H.E.R is designed to preserve those distinctions and keep consequential disposition with an authorised human acting for the institution.</p>
       </div>
     </section>
 
