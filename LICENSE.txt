@@ -1,36 +1,272 @@
 HER2NI — Human–Emergent Resonance to Neural Intelligence
 Research Protocol & Documentation
 
-Copyright © 2026 HER2NI
+Copyright © 2025–2026 Steve Black and HER2NI LLC, as applicable.
+All rights reserved except for material expressly licensed otherwise below.
 
-All rights reserved.
+===============================================================================
+1. SCOPE
+===============================================================================
 
 This repository contains research materials, protocol specifications,
-documentation, and illustrative artifacts relating to the HER2NI
-(Human–Emergent Resonance to Neural Intelligence) framework.
+documentation, website materials, illustrative artifacts, and other material
+relating to HER2NI (Human–Emergent Resonance to Neural Intelligence) and H.E.R.
 
-Permission is granted to:
-- read, view, and reference these materials,
-- cite the HER2NI protocol in academic or policy work,
-- link to the official website and DOI records.
+This LICENSE.txt applies only to material that is not expressly subject to a
+different licence.
 
-Permission is NOT granted to:
-- copy or redistribute this repository or its contents in whole or in part,
-- create derivative protocols or systems presented as HER2NI or compatible equivalents,
-- use HER2NI branding, names, or marks without written consent,
-- represent these materials as certified, endorsed, or approved products,
-- train, fine-tune, or benchmark commercial systems using these materials beyond fair academic citation.
+Nothing in this file narrows, revokes, expands, replaces, or otherwise alters
+a licence already attached to a specific published work.
 
-This repository does not grant any license to software implementations,
-evaluation engines, or commercial systems derived from HER2NI.
-Those are licensed separately.
 
-The canonical HER2NI protocol is published at:
+===============================================================================
+2. ZENODO RESEARCH PUBLICATIONS — CC BY 4.0
+===============================================================================
+
+The following specific HER2NI research publications have been published
+through Zenodo under the Creative Commons Attribution 4.0 International
+licence (CC BY 4.0):
+
+1. HER2NI: A Protocol for Cross-Substrate Cognitive Alignment,
+   Multimodal Coherence Visualisation, and Multi-User Cognitive-Field Systems
+
+   DOI:
+   https://doi.org/10.5281/zenodo.17844407
+
+
+2. HER-Field: Aggregate Coherence and Topic Prevalence in
+   Human–AI Interaction Systems
+
+   DOI:
+   https://doi.org/10.5281/zenodo.17919608
+
+
+3. HER2NI-EXPERIMENTAL v0.1:
+   Specification Validation and Falsification Schema
+
+   DOI:
+   https://doi.org/10.5281/zenodo.17924574
+
+
+4. HER2NI-A2A v0.1:
+   Agent–Agent Interaction Coherence Metrics
+
+   DOI:
+   https://doi.org/10.5281/zenodo.17957532
+
+
+5. HER2NI as Interaction Infrastructure:
+   A Model-Agnostic Telemetry Protocol for Coherence Dynamics
+   in Complex Systems
+
+   DOI:
+   https://doi.org/10.5281/zenodo.17981566
+
+
+6. HER2NI: Interaction-Level Coherence Telemetry —
+   A Dynamical Signal for Human–AI Dialogue
+
+   DOI:
+   https://doi.org/10.5281/zenodo.18063710
+
+
+7. HER₂: Symbolic Designation for a Cross-Substrate Interaction-State —
+   Prior-Art Concept Note and Naming Boundary for HER₂ vs. HER2NI
+
+   DOI:
+   https://doi.org/10.5281/zenodo.18088318
+
+
+Where a document hosted in this repository or on her2ni.ai is the same
+published work and version identified by one of the Zenodo records above,
+the CC BY 4.0 licence governs the copyright and similar rights within the
+scope of that licence in that specific work.
+
+The all-rights-reserved terms elsewhere in this file do not restrict rights
+already granted under CC BY 4.0 for those specific works.
+
+The applicable CC BY 4.0 terms remain the terms published by Creative
+Commons.
+
+
+===============================================================================
+3. NO PATENT, INVENTION, OR TRADE-MARK LICENCE
+===============================================================================
+
+For the avoidance of doubt, publication of a research work under CC BY 4.0
+does not grant a licence under any patent or patent application and does not
+grant trade-mark rights.
+
+Nothing in this repository, in the Zenodo research licences identified above,
+or in this LICENSE.txt grants any patent licence or other permission under
+any patent or patent application relating to HER2NI or H.E.R.
+
+Nothing here grants any right to use:
+
+  HER2NI®;
+
+  H.E.R™;
+
+  H.E.R Ring™;
+
+  One human. Many intelligences. Single voice.™;
+
+or any other HER2NI or H.E.R trade mark, service mark, product identity,
+source identifier, or confusingly similar designation except as required for
+truthful attribution, reference, or other use permitted by applicable law.
+
+HER2NI® is an Australian registered trade mark owned by Steve Black.
+
+H.E.R™, H.E.R Ring™, and
+One human. Many intelligences. Single voice.™
+are used as trade marks in connection with H.E.R.
+
+
+===============================================================================
+4. PROPRIETARY SOFTWARE, IMPLEMENTATIONS, AND COMMERCIAL SYSTEMS
+===============================================================================
+
+The CC BY 4.0 licences identified above apply to the specific published
+research works to which they were attached.
+
+They do not by themselves grant access to, or a licence in, proprietary
+material that is not contained within those licensed works, including:
+
+  H.E.R iOS source;
+
+  H.E.R Core source;
+
+  H.E.R Relay source;
+
+  proprietary H.E.R implementations;
+
+  evaluation or synthesis engines;
+
+  deployment systems;
+
+  authority and trust machinery;
+
+  private route-orchestration mechanisms;
+
+  confidential state mappings or calibration material;
+
+  unpublished architecture;
+
+  commercial H.E.R products or services;
+
+  credentials, infrastructure, or private operational material.
+
+Research access to HER2NI publications does not constitute access to or a
+commercial licence for H.E.R.
+
+
+===============================================================================
+5. ALL OTHER REPOSITORY MATERIAL
+===============================================================================
+
+Except for material expressly identified as subject to CC BY 4.0 or another
+licence, all material in this repository remains all rights reserved.
+
+For that material, permission is granted to:
+
+  - read, view, and reference the material;
+
+  - cite HER2NI material in academic, policy, technical, legal, or other
+    legitimate work;
+
+  - link to official HER2NI websites and DOI records;
+
+  - make any use independently permitted by applicable law.
+
+
+Except where a separate licence or applicable law permits it, permission is
+not granted to:
+
+  - copy or redistribute proprietary repository material in whole or
+    substantial part;
+
+  - reproduce, adapt, or republish proprietary documentation or software;
+
+  - use HER2NI or H.E.R branding, names, marks, or source identifiers as
+    though a third-party product or service were official, certified,
+    endorsed, authorised, or supplied by HER2NI;
+
+  - represent HER2NI materials or systems as certified, government-approved,
+    endorsed, accredited, or otherwise approved where no such status exists;
+
+  - train, fine-tune, or commercially benchmark systems using proprietary
+    repository material where that use would require permission from the
+    relevant rights holder;
+
+  - obtain access to proprietary H.E.R software, implementations, commercial
+    systems, or confidential material merely by reason of access to this
+    repository or to HER2NI research publications.
+
+
+===============================================================================
+6. RESEARCH AND COMMERCIAL DISTINCTION
+===============================================================================
+
+HER2NI Research records the research and protocol lineage from which H.E.R
+developed.
+
+H.E.R is the commercial human-facing intelligence system developed and
+distributed separately.
+
+Publication of HER2NI research does not mean that proprietary H.E.R source,
+implementations, services, or confidential technical material are
+open-source or publicly licensed.
+
+
+===============================================================================
+7. NO CERTIFICATION OR ENDORSEMENT
+===============================================================================
+
+Nothing in this repository or in a HER2NI research publication constitutes
+a representation that HER2NI, H.E.R, or any implementation is:
+
+  government endorsed;
+
+  government approved;
+
+  certified;
+
+  accredited;
+
+  compliant with any particular regulatory or security framework;
+
+  suitable for any particular consequential use;
+
+  or authorised to exercise institutional decision authority.
+
+Any such status must be established separately and expressly.
+
+
+===============================================================================
+8. OFFICIAL REFERENCES
+===============================================================================
+
+Institutional H.E.R:
 https://her2ni.ai
+
+HER2NI Protocol:
 https://doi.org/10.5281/zenodo.17844407
 
-For research correspondence:
+Research correspondence:
 research@her2ni.ai
 
-For commercial or licensing enquiries:
+Commercial or licensing enquiries:
 licensing@her2.ai
+
+
+===============================================================================
+9. RIGHTS QUESTIONS
+===============================================================================
+
+If there is any uncertainty about whether a particular file is one of the
+CC BY 4.0 publications identified above or is proprietary HER2NI / H.E.R
+material, contact:
+
+research@her2ni.ai
+
+before relying on this file as permission for reuse.

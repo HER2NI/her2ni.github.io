@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy — H.E.R™ by HER2NI®</title>
+  <meta name="description" content="How her2ni.ai handles personal data. No cookies, no scripts, no analytics, no third-party requests on page load." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://her2ni.ai/privacy.html" />
+
+  <!-- Fonts are self-hosted. This page makes NO third-party requests. -->
+  <link rel="icon" type="image/png" href="assets/her_ring_quiet_alpha_v2.png" />
+
+  <style>
+    @font-face {
+      font-family: "Archivo";
+      src: url("assets/fonts/archivo-latin-var.woff2") format("woff2-variations");
+      font-weight: 100 900; font-stretch: 62% 125%; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: "JetBrains Mono";
+      src: url("assets/fonts/jetbrains-mono-latin-var.woff2") format("woff2-variations");
+      font-weight: 100 800; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: "Noto Sans Georgian";
+      src: url("assets/fonts/noto-sans-georgian-subset.woff2") format("woff2");
+      unicode-range: U+10A0-10FF, U+1C90-1CBF, U+2D00-2D2F;
+      font-weight: 400; font-style: normal; font-display: swap;
+    }
+
+    :root {
+      color-scheme: dark;
+      --ink: #f3f7fb;
+      --muted: #a6b1c1;
+      --quiet: #75849a;
+      --line: rgba(105, 167, 230, 0.15);
+      --line-strong: rgba(74, 167, 255, 0.4);
+      --cyan: #91ddff;
+      --blue: #1389ff;
+      --background: #020611;
+      --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+      --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+      --sans: "Archivo", "Helvetica Neue", Arial, ui-sans-serif, system-ui, sans-serif;
+      --content: 1368px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { background: var(--background); overflow-x: hidden; overflow-x: clip; }
+    body {
+      margin: 0; min-width: 320px;
+      background:
+        radial-gradient(circle at 78% 8%, rgba(6, 86, 194, 0.10), transparent 30rem),
+        linear-gradient(180deg, #020712 0%, #01050e 60rem, #01040a 100%);
+      color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration-color: rgba(104, 239, 247, 0.54); text-underline-offset: 0.24em; }
+    a:hover { color: var(--cyan); }
+    :focus-visible { outline: 2px solid var(--cyan); outline-offset: 5px; }
+
+    .skip-link {
+      position: fixed; top: .75rem; left: .75rem; z-index: 100; padding: .7rem 1rem;
+      background: var(--ink); color: var(--background); font-family: var(--mono);
+      font-size: .78rem; transform: translateY(-180%);
+    }
+    .skip-link:focus { transform: translateY(0); }
+
+    .shell { width: min(calc(100% - 5rem), var(--content)); margin-inline: auto; }
+
+    .site-header {
+      position: relative; z-index: 10; display: flex; align-items: center;
+      justify-content: space-between; gap: 2rem; min-height: 4.5rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .house-mark {
+      flex: none; display: inline-flex; align-items: flex-start; gap: .10em; color: #eaf2ff;
+      font-family: var(--display); font-size: 1.1875rem; font-stretch: 118%; font-weight: 400;
+      letter-spacing: .30em; line-height: 1; text-decoration: none;
+    }
+    .house-two { color: #7fc8f5; }
+    .house-reg { display: inline-block; margin: .15em 0 0 .28em; font-size: .46em; font-style: normal; letter-spacing: 0; line-height: 1; }
+    .back-link {
+      font-family: var(--mono); font-size: .71rem; letter-spacing: .13em;
+      text-transform: uppercase; color: var(--muted); text-decoration: none;
+    }
+    .back-link:hover { color: var(--ink); }
+
+    main { padding-block: clamp(3.5rem, 7vw, 6rem) 2rem; }
+
+    .page-label {
+      margin: 0 0 1.6rem; color: var(--cyan); font-family: var(--mono); font-size: .7rem;
+      font-weight: 500; letter-spacing: .18em; text-transform: uppercase;
+    }
+    h1 {
+      max-width: 40rem; margin: 0; font-size: clamp(2rem, 4.2vw, 3.4rem);
+      font-weight: 420; letter-spacing: -.045em; line-height: 1.08;
+    }
+    .standfirst {
+      max-width: 46rem; margin: 1.6rem 0 0; color: var(--ink); font-size: clamp(1.05rem, 1.8vw, 1.28rem);
+    }
+    .effective {
+      margin: 1.4rem 0 0; color: var(--quiet); font-family: var(--mono); font-size: .7rem; letter-spacing: .04em;
+    }
+
+    .claim {
+      margin: 3rem 0 0; padding: 1.6rem 1.8rem;
+      border: 1px solid var(--line-strong); border-radius: .75rem;
+      background: radial-gradient(circle at 12% 40%, rgba(23,126,255,.10), transparent 22rem), rgba(4, 14, 27, .72);
+    }
+    .claim p { margin: 0; font-family: var(--mono); font-size: .95rem; line-height: 1.7; color: #dceaf5; }
+    .claim p + p { margin-top: .7rem; color: var(--muted); font-size: .78rem; }
+
+    section { margin-top: 3.2rem; padding-top: 2.2rem; border-top: 1px solid var(--line); max-width: 52rem; }
+    h2 {
+      margin: 0 0 1.1rem; font-family: var(--mono); font-size: .78rem; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase; color: #dceaf5;
+    }
+    p { margin: 0 0 1rem; color: var(--muted); }
+    p:last-child { margin-bottom: 0; }
+    strong { color: var(--ink); font-weight: 500; }
+    ul { margin: 0 0 1rem; padding-left: 1.1rem; color: var(--muted); }
+    li { margin-bottom: .5rem; }
+    li::marker { color: var(--cyan); }
+    .k { font-family: var(--mono); font-size: .92em; color: #cddcec; }
+
+    .site-footer {
+      margin-top: 4rem; padding-block: 2.5rem 3.5rem; border-top: 1px solid var(--line);
+      color: var(--quiet); font-family: var(--mono); font-size: .68rem;
+      letter-spacing: .025em; line-height: 1.65;
+      display: grid; grid-template-columns: 1.1fr 1fr; gap: 2rem;
+    }
+    .legal-entity { margin: 0; font-style: normal; line-height: 1.7; }
+    .legal-entity strong { color: #cddcec; font-weight: 500; letter-spacing: .06em; }
+    .legal-entity .ka { font-family: "Noto Sans Georgian", Sylfaen, var(--mono); letter-spacing: 0; }
+
+    @media (max-width: 760px) {
+      .shell { width: min(calc(100% - 2rem), var(--content)); }
+      .site-header { min-height: 4rem; gap: 1rem; }
+      .site-footer { grid-template-columns: 1fr; gap: 1.25rem; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="site-header shell">
+    <a class="house-mark" href="index.html" aria-label="HER2NI® home"><span aria-hidden="true">HER<span class="house-two">2</span>NI</span><sup class="house-reg" aria-hidden="true">®</sup></a>
+    <a class="back-link" href="index.html">← Back to H.E.R</a>
+  </header>
+
+  <main id="main-content" class="shell">
+    <p class="page-label">Privacy</p>
+    <h1>What this website collects.</h1>
+    <p class="standfirst">Almost nothing, and none of it by design. This page describes exactly what happens when you load her2ni.ai, in terms you can verify yourself.</p>
+    <p class="effective">Effective 8 August 2026 · HER2NI LLC, Identification No. 404813975</p>
+
+    <div class="claim">
+      <p>This website sets no cookies, runs no scripts, uses no analytics, and makes <strong>no third-party requests on page load</strong>.</p>
+      <p>Open your browser's network inspector on any page of this site. Every request is to her2ni.ai. Fonts are self-hosted; there is no CDN, no tag manager, no tracking pixel and no embedded content.</p>
+    </div>
+
+    <section>
+      <h2>Who is responsible</h2>
+      <p><strong>HER2NI LLC</strong> (შპს ჰერ2ენაი), Identification No. 404813975, registered in Sakartvelo (Georgia) at Krtsanisi district, Nino and Ilia Nakashidze Street N 1, (former Avlev) Building N3, Apartment N3, is the controller for personal data processed through this website.</p>
+      <p>Enquiries, including requests about your data: <a href="mailto:her@her2ni.ai?subject=Privacy%20enquiry">her@her2ni.ai</a>.</p>
+    </section>
+
+    <section>
+      <h2>What happens when you load a page</h2>
+      <p>Your browser requests HTML, CSS, three font files and image assets. All of them are served from this domain. Nothing else is requested and nothing is stored on your device.</p>
+      <p>This site is published as static files through <strong>GitHub Pages</strong>, operated by GitHub, Inc. (United States). Like any web host, GitHub's servers process the technical information every web request necessarily contains — your IP address, the page requested, the time, your user agent — in order to deliver the page and to protect the service from abuse. HER2NI does not receive, request or retain those server logs, and does not use them for analytics.</p>
+      <p>That processing is a transfer of technical data to the United States. It is the only routine processing this website causes.</p>
+    </section>
+
+    <section>
+      <h2>Cookies and local storage</h2>
+      <p><span class="k">None.</span> This site sets no cookies of any kind — not necessary, not functional, not analytical, not advertising — and writes nothing to local storage or session storage. There is no consent banner because there is nothing to consent to.</p>
+    </section>
+
+    <section>
+      <h2>Links that leave this site</h2>
+      <p>The claim above is about page load. If you deliberately follow a link, you go to that operator's service and their terms and privacy practices apply, not ours. Those links are:</p>
+      <ul>
+        <li><strong>Zenodo</strong> (CERN, Switzerland) — the research record DOIs.</li>
+        <li><strong>GitHub</strong> — the HER2NI repositories.</li>
+        <li><strong>her2.ai</strong> — the separate consumer H.E.R surface.</li>
+        <li><strong>Email links</strong> — these open your own mail client; nothing is sent by the website itself.</li>
+      </ul>
+      <p>No such request is made unless you click.</p>
+    </section>
+
+    <section>
+      <h2>If you contact us</h2>
+      <p>If you write to <a href="mailto:her@her2ni.ai">her@her2ni.ai</a> we hold your message and address for as long as needed to deal with your enquiry and to keep a record of institutional correspondence, and no longer. We do not add you to a mailing list, and there isn't one. We do not sell, rent or share correspondence with third parties.</p>
+    </section>
+
+    <section>
+      <h2>Your rights</h2>
+      <p>Under the Law of Georgia on Personal Data Protection you may ask us what personal data we hold about you, ask for it to be corrected, ask for it to be deleted or its processing restricted, and receive a copy. Write to <a href="mailto:her@her2ni.ai?subject=Data%20request">her@her2ni.ai</a> and we will respond within the period the law allows.</p>
+      <p>If you believe we have handled your data improperly you may complain to the <strong>Personal Data Protection Service of Georgia</strong>.</p>
+    </section>
+
+    <section>
+      <h2>H.E.R the system, and this website</h2>
+      <p>This page covers <strong>this website only</strong>. H.E.R itself — the multi-route analysis architecture described on the home page — is not operated through this site, and no analysis, prompt or document you may send in the course of a pilot is processed by anything described here. Any evaluation or pilot engagement is governed by its own written terms and its own data-protection arrangements, agreed with the institution concerned before any data is handled.</p>
+    </section>
+
+    <section>
+      <h2>Changes</h2>
+      <p>If this page changes, the effective date above changes with it. Because the site is published from a public repository, every revision to this page is visible in its commit history.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer shell">
+    <address class="legal-entity">
+      <strong>HER2NI LLC</strong> <span class="ka">შპს ჰერ2ენაი</span><br />
+      Identification No. 404813975<br />
+      Sakartvelo (Georgia), Tbilisi, Krtsanisi district, Nino and Ilia Nakashidze Street N 1,
+      (former Avlev) Building N3, Apartment N3
+    </address>
+    <p>HER2NI® is a registered trade mark in Australia. H.E.R™, H.E.R Ring™ and One human. Many intelligences. Single voice.™ are trade marks used in connection with H.E.R.<br /><br /><a href="index.html">← Back to H.E.R</a></p>
+  </footer>
+</body>
+</html>

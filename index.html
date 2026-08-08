@@ -9,6 +9,13 @@
   <meta name="theme-color" content="#03080c" />
   <link rel="canonical" href="https://her2ni.ai/" />
 
+  <!-- Fonts are self-hosted. This page makes NO third-party requests: no CDN,
+       no analytics, no scripts, no cookies. Do not reintroduce a Google Fonts
+       <link> — it would send every visitor's IP address to a third party and
+       break the claim made on the privacy page. Both faces are SIL OFL. -->
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/archivo-latin-var.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/jetbrains-mono-latin-var.woff2" crossorigin />
+
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://her2ni.ai/" />
   <meta property="og:title" content="H.E.R™ by HER2NI® — Provider-Neutral Institutional Intelligence" />
@@ -18,9 +25,44 @@
   <meta name="twitter:title" content="H.E.R™ by HER2NI® — Provider-Neutral Institutional Intelligence" />
   <meta name="twitter:description" content="Provider-neutral intelligence for accountable institutional decisions." />
 
-  <link rel="icon" type="image/svg+xml" href="assets/her_ring_mark.svg" />
+  <link rel="icon" type="image/png" href="assets/her_ring_quiet_alpha_v2.png" />
+  <link rel="preload" as="image" href="assets/her_ring_quiet_alpha_v2.png" type="image/png" />
 
   <style>
+    /* Self-hosted variable faces. Archivo carries both wght (100-900) and
+       wdth (62-125); the wdth axis is what .hero-title and .house-mark use via
+       font-stretch, so the "standard" variable file is required, not "wght". */
+    @font-face {
+      font-family: "Archivo";
+      src: url("assets/fonts/archivo-latin-var.woff2") format("woff2-variations");
+      font-weight: 100 900;
+      font-stretch: 62% 125%;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "JetBrains Mono";
+      src: url("assets/fonts/jetbrains-mono-latin-var.woff2") format("woff2-variations");
+      font-weight: 100 800;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    /* Georgian block only (~6 KB) — for the registered company name in the footer.
+       unicode-range confines it to Georgian letters, so the digit in "ჰერ2ენაი"
+       falls through to JetBrains Mono and matches the rest of the footer instead
+       of rendering from a random system face. It also means browsers only fetch
+       this file when Georgian text is actually on the page. */
+    @font-face {
+      font-family: "Noto Sans Georgian";
+      src: url("assets/fonts/noto-sans-georgian-subset.woff2") format("woff2");
+      unicode-range: U+10A0-10FF, U+1C90-1CBF, U+2D00-2D2F;
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
     :root {
       color-scheme: dark;
       --ink: #f3f7fb;
@@ -34,8 +76,9 @@
       --surface: #06101c;
       --surface-raised: #071522;
       --background: #020611;
-      --mono: "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+      --sans: "Archivo", "Helvetica Neue", Arial, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       --content: 1368px;
       --radius: 10px;
     }
@@ -49,11 +92,16 @@
     html {
       scroll-behavior: smooth;
       background: var(--background);
+      overflow-x: hidden;
+      overflow-x: clip;      /* the ring halo bleeds past the viewport edge by design:
+                                clip it there rather than growing the page sideways */
     }
 
     body {
       margin: 0;
       min-width: 320px;
+      overflow-x: hidden;
+      overflow-x: clip;
       background:
         radial-gradient(circle at 75% 15%, rgba(6, 86, 194, 0.12), transparent 34rem),
         linear-gradient(180deg, #020712 0%, #01050e 72rem, #01040a 100%);
@@ -68,6 +116,33 @@
       display: block;
       height: auto;
       max-width: 100%;
+    }
+
+    /* Approved H.E.R Ring raster assets.
+       The PNG pixels already contain the glow / field treatment.
+       Do not add CSS filters, shadows, masks, or procedural glow. */
+    .her-ring-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
+      border: 0;
+      box-shadow: none;
+      filter: none;
+      background: transparent;
+      mix-blend-mode: normal;
+      opacity: 1;
+    }
+
+    .her-ring-image--hero {
+      width: 100%;
+      max-width: none;
+    }
+
+    .her-ring-image--quiet {
+      width: min(30vw, 23.75rem);
+      max-width: 23.75rem;
     }
 
     a {
@@ -120,24 +195,29 @@
 
     .house-mark {
       flex: none;
-      font-family: var(--mono);
       display: inline-flex;
       align-items: flex-start;
-      color: #f5f7fb;
-      font-size: 1.2rem;
-      font-weight: 500;
-      letter-spacing: 0.62em;
+      gap: 0.10em;
+      color: #eaf2ff;
+      font-family: var(--display);
+      font-size: 1.1875rem;
+      font-stretch: 118%;
+      font-weight: 400;
+      letter-spacing: 0.30em;
+      line-height: 1;
       text-decoration: none;
     }
 
     .house-two {
-      color: #68bfff;
+      color: #7fc8f5;
     }
 
     .house-reg {
-      margin: 0.03em 0 0 0.22em;
-      font-size: 0.55em;
+      display: inline-block;
+      margin: 0.15em 0 0 0.28em;
+      font-size: 0.46em;
       font-style: normal;
+      font-weight: 400;
       letter-spacing: 0;
       line-height: 1;
     }
@@ -196,54 +276,75 @@
       align-items: flex-start;
       width: fit-content;
       margin: 0;
-      font-family: var(--mono);
-      font-size: 6.25rem;
-      font-weight: 400;
-      line-height: 0.88;
+      font-family: var(--display);
+      font-size: 7rem;
+      font-stretch: 125%;
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: 0;
+      background: linear-gradient(180deg, #ffffff 0%, #ffffff 46%, #c9d8ec 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 7px rgba(242, 251, 255, 0.56), 0 0 18px rgba(174, 220, 255, 0.30), 0 0 38px rgba(72, 163, 255, 0.17);
     }
 
     .hero-word {
-      letter-spacing: 0.085em;
+      letter-spacing: 0.06em;
     }
 
     .hero-tm {
-      margin-top: 0.1em;
-      margin-left: 1.1em;
+      margin-top: 0;
+      margin-left: 0.30em;
       font-size: 0.22em;
       font-style: normal;
-      font-weight: 400;
-      letter-spacing: 0.08em;
+      font-weight: 300;
+      letter-spacing: 0;
       line-height: 1;
+      -webkit-text-fill-color: #e8f1ff;
+      color: #e8f1ff;
     }
 
     .ring-figure {
       position: absolute;
-      top: -1.65rem;
-      right: 0.9rem;
-      width: 36.5rem;
+      top: 50%;
+      right: 1.8rem;
+      width: min(40vw, 34rem);
       margin: 0;
+      transform: translateY(-50%);
+      pointer-events: none;      /* the halo now overlaps the copy column; keep it click-through */
+      isolation: isolate;
     }
 
+    /* The spiral asset carries 1.5x canvas so its halo can fade out completely
+       instead of being cut at the frame. The extra is transparent glow, so the
+       IMAGE overflows its box symmetrically (150% wide, -25% margins) rather
+       than the box growing -- which keeps the visible ring exactly where the
+       layout puts it. Changing these two numbers together is what preserves it. */
     .ring-figure img {
-      width: 100%;
+      width: 150%;
+      max-width: none;
+      height: auto;
       aspect-ratio: 1 / 1;
       object-fit: contain;
+      margin: -25%;
     }
 
     .slogan {
       width: fit-content;
       max-width: 46rem;
-      margin: 0.65rem 0 0;
-      color: var(--cyan);
+      margin: 0.55rem 0 0;
+      color: #7fc8f5;
       font-family: var(--mono);
-      font-size: 1rem;
-      letter-spacing: 0.22em;
+      font-size: 1.0625rem;
+      font-weight: 300;
+      letter-spacing: 0.055em;
       line-height: 1.6;
     }
 
     .slogan-tm {
       margin-left: 0.08em;
-      font-size: 0.62em;
+      font-size: 0.55em;
       line-height: 0;
       vertical-align: super;
     }
@@ -346,6 +447,8 @@
       line-height: 1.25;
       text-decoration: none;
       text-transform: uppercase;
+      transition: background-color 180ms ease, border-color 180ms ease,
+                  box-shadow 180ms ease, color 180ms ease;
     }
 
     .button:first-child {
@@ -365,10 +468,24 @@
       line-height: 1;
     }
 
+    /* Hover lifts the button out of the field rather than inverting it.
+       A full flip to near-white reads as a flash on a dark page. */
     .button:hover {
-      background: var(--ink);
-      border-color: var(--ink);
-      color: #031014;
+      background: rgba(11, 30, 54, 0.92);
+      border-color: rgba(145, 221, 255, 0.72);
+      box-shadow: 0 0 22px rgba(19, 137, 255, 0.16);
+      color: #ffffff;
+    }
+
+    .button:first-child:hover {
+      background: linear-gradient(180deg, #0b84ee, #0959bd);
+      border-color: #8ad9ff;
+      box-shadow: 0 0 26px rgba(19, 137, 255, 0.42), inset 0 1px 0 rgba(236, 253, 255, 0.42);
+      color: #ffffff;
+    }
+
+    .button:active {
+      transform: translateY(1px);
     }
 
     .section {
@@ -470,13 +587,19 @@
       grid-template-columns: minmax(24rem, 0.9fr) minmax(0, 1.1fr);
       gap: clamp(2.5rem, 6vw, 5rem);
       align-items: center;
+      isolation: isolate;
     }
 
     .ring-study {
-      width: min(100%, 31rem);
+      width: min(100%, 23.75rem);
       margin: 0 auto;
       aspect-ratio: 1 / 1;
       object-fit: contain;
+      border: 0;
+      box-shadow: none;
+      filter: none;
+      mix-blend-mode: normal;
+      opacity: 1;
     }
 
     .ring-copy p {
@@ -491,9 +614,19 @@
       font-size: 1.28rem;
     }
 
+    /* Legal notation, not body copy. */
+    .ring-copy p.ring-note {
+      margin-top: 2rem;
+      color: var(--quiet);
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
     .institutional-front {
       width: min(calc(100% - 9rem), 81.4rem);
-      padding-block: 0;
+      padding-block: 3.75rem 0;
       border-bottom: 1px solid var(--line);
     }
 
@@ -848,6 +981,24 @@
       margin: 0;
     }
 
+    .legal-entity {
+      margin: 0;
+      font-style: normal;      /* <address> italicises by default */
+      line-height: 1.7;
+    }
+
+    .legal-entity strong {
+      color: #cddcec;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+    }
+
+    /* Neither Archivo nor JetBrains Mono carries Georgian glyphs. */
+    .legal-entity .ka {
+      font-family: "Noto Sans Georgian", Sylfaen, "BPG Nino Mtavruli", var(--mono);
+      letter-spacing: 0;
+    }
+
     @media (max-width: 1100px) {
       .capability-grid,
       .trust-grid {
@@ -1055,9 +1206,10 @@
       }
 
       .ring-figure {
-        top: 1rem;
-        right: -1rem;
-        width: min(45vw, 29rem);
+        top: 50%;
+        right: 0;
+        width: min(42vw, 30rem);
+        transform: translateY(-50%);
       }
 
       .slogan,
@@ -1114,8 +1266,9 @@
 
       .ring-figure {
         position: static;
-        width: min(62vw, 28rem);
+        width: min(72vw, 23rem);
         margin: 2rem auto 0;
+        transform: none;
       }
 
       .slogan,
@@ -1176,7 +1329,7 @@
       }
 
       .ring-figure {
-        width: min(78vw, 21.875rem);
+        width: min(82vw, 21.875rem);
         margin-top: 2rem;
       }
 
@@ -1279,9 +1432,18 @@
 
   <header class="site-header shell">
     <a class="house-mark" href="#her" aria-label="HER2NI® home"><span class="house-word" aria-hidden="true">HER<span class="house-two">2</span>NI</span><sup class="house-reg" aria-hidden="true">®</sup></a>
+    <!-- VOICE RULE (MER decision, 8 Aug 2026 — do not flip back to "it"):
+         H.E.R may be personified as she/her in public-facing product and experiential
+         language. Personification confers no institutional, legal, decisional or
+         autonomous authority. Never attach an authority-bearing verb to "she" — she
+         does not approve, authorise, determine, dispose, or act for the institution.
+         She may analyse, coordinate, preserve, compare, synthesise, present and
+         maintain interaction state. Technical, evidentiary and governance copy keeps
+         "H.E.R", "the H.E.R system", "the architecture". Lowercase "she" in prose;
+         uppercase only in nav and section titles. -->
     <nav class="site-nav" aria-label="Primary navigation">
       <a href="#her">H.E.R</a>
-      <a href="#how-it-works">How it works</a>
+      <a href="#how-it-works">What she does</a>
       <a href="#institutional">Institutional</a>
       <a href="#evidence">Evidence</a>
       <a href="#research">Research</a>
@@ -1296,16 +1458,24 @@
       </h1>
 
       <figure class="ring-figure">
-        <img src="assets/her_ring_mark.svg" alt="Static H.E.R Ring™ with one blue-white luminous boundary around a dark centre" width="640" height="640" />
+        <img
+          src="assets/her_ring_spiral_alpha_v2.png"
+          alt="H.E.R Ring™"
+          class="her-ring-image her-ring-image--hero"
+          width="872"
+          height="872"
+          fetchpriority="high"
+          decoding="async"
+        />
       </figure>
 
       <p class="slogan">One human. Many intelligences. Single voice.<sup class="slogan-tm">™</sup></p>
       <div class="hero-rule" aria-hidden="true"></div>
-      <p class="descriptor">Governed intelligence for consequential decisions.</p>
-      <p class="hero-supporting">Independent AI routes. Preserved dissent. Governed synthesis. Human authority. Verifiable provenance.</p>
+      <p class="descriptor">Your governed intelligence for consequential decisions.</p>
+      <p class="hero-supporting">Independent multi-modal AI routes.<br>Verifiable provenance. Evidenced dissent.<br>Governed synthesis into a single voice.</p>
       <div class="hero-explanations">
-        <p class="hero-copy">Designed for public-sector and institutional environments where the reasoning process, competing views and authority to act matter as much as the final answer.</p>
-        <p class="hero-copy">H.E.R is a provider-neutral human-facing intelligence architecture that coordinates governed multi-route analysis, preserves material dissent, produces a reviewable synthesis with provenance, and keeps consequential decision authority with the human.</p>
+        <p class="hero-copy">Created for governmental and institutional environments where transparency behind reasoning processes, competing views and authority to act can matter as much as the final answer.</p>
+        <p class="hero-copy">H.E.R is the provider-neutral human-facing intelligence architecture that coordinates governed multi-route analysis, preserves material dissent, produces a reviewable synthesis with provenance, and keeps consequential decision authority with the human.</p>
       </div>
 
       <ul class="principles" aria-label="H.E.R principles">
@@ -1318,7 +1488,7 @@
 
       <nav class="hero-actions" aria-label="Institutional H.E.R pathways">
         <a class="button" href="#contact">INSTITUTIONAL PILOTS <span class="button-arrow" aria-hidden="true">→</span></a>
-        <a class="button" href="#how-it-works">HOW H.E.R WORKS <span class="button-arrow" aria-hidden="true">→</span></a>
+        <a class="button" href="#how-it-works">WHAT SHE DOES <span class="button-arrow" aria-hidden="true">→</span></a>
         <a class="button" href="#evidence">EVIDENCE &amp; RESEARCH <span class="button-arrow" aria-hidden="true">→</span></a>
       </nav>
     </section>
@@ -1385,12 +1555,12 @@
     </section>
 
     <section class="section shell" id="how-it-works" aria-labelledby="how-title">
-      <p class="section-label">HOW H.E.R WORKS</p>
+      <p class="section-label">WHAT SHE DOES</p>
       <div class="system-layout">
         <div class="system-copy">
-          <h2 class="section-title" id="how-title">One encounter. Multiple independent intelligences. One accountable response.</h2>
+          <h2 class="section-title" id="how-title">One encounter. Multiple independent intelligences.<br>One accountable response.</h2>
           <p>H.E.R does not ask one model to impersonate certainty.</p>
-          <p>It creates a governed encounter in which independently admitted intelligences may produce different analyses before one human-facing synthesis is produced, with material dissent and provenance preserved.</p>
+          <p>She creates a governed encounter in which independently admitted intelligences may produce different analyses before one human-facing synthesis is produced, with material dissent and provenance preserved.</p>
         </div>
 
         <ol class="flow" aria-label="Public H.E.R workflow">
@@ -1407,18 +1577,27 @@
     </section>
 
     <section class="section shell ring-section" aria-labelledby="ring-title">
-      <img class="ring-study" src="assets/her_ring_mark.svg" alt="" width="640" height="640" loading="lazy" />
+      <img
+        class="ring-study her-ring-image her-ring-image--quiet"
+        src="assets/her_ring_quiet_alpha_v2.png"
+        alt="H.E.R Ring™ in a subdued illustrative state"
+        width="1027"
+        height="1027"
+        loading="lazy"
+        decoding="async"
+      />
       <div class="ring-copy">
-        <p class="section-label">THE H.E.R RING™</p>
+        <p class="section-label">H.E.R RING™</p>
         <h2 class="section-title" id="ring-title">A persistent identity for governed interaction.</h2>
         <p>The H.E.R Ring™ is the persistent visual identity of H.E.R.</p>
-        <p>Its state is designed to correspond to governed H.E.R interaction conditions rather than random animation.</p>
+        <p>Ring state is coded to correspond to governed H.E.R interaction conditions rather than random animation.</p>
+        <p class="ring-note">Patents pending.</p>
       </div>
     </section>
 
     <section class="authority" aria-labelledby="authority-title">
       <div class="shell">
-        <h2 id="authority-title">THE HUMAN REMAINS THE AUTHORITY.</h2>
+        <h2 id="authority-title">HUMAN AUTHORITY<br>REMAINS AUTHORITY.</h2>
         <div class="authority-lines">
           <p>Model output is not authority.</p>
           <p>Agreement is not factual truth.</p>
@@ -1452,7 +1631,7 @@
         <h2 class="section-title" id="research-title">The research record remains visible.</h2>
         <div class="lineage-statement">
           <p>H.E.R is the institutional system.</p>
-          <p>HER2NI Research records the research and protocol lineage from which it developed.</p>
+          <p>HER2NI Research records the research and protocol lineage from which she developed.</p>
         </div>
       </div>
 
@@ -1509,18 +1688,26 @@
         <h2 class="section-title" id="contact-title">Begin with a bounded question.</h2>
       </div>
       <div class="contact-copy">
-        <p>H.E.R is available for discussion with public-sector, legal, research, assurance and other institutions considering bounded evaluation or pilot work.</p>
-        <a class="contact-address" href="mailto:research@her2ni.ai?subject=H.E.R%20institutional%20enquiry">research@her2ni.ai</a>
+        <p>H.E.R is available for discussion with government, legal, research, assurance and other institutions considering bounded evaluation or pilot work.</p>
+        <a class="contact-address" href="mailto:her@her2ni.ai?subject=H.E.R%20institutional%20enquiry">her@her2ni.ai</a>
         <a class="secondary-link" href="https://her2.ai" rel="noopener noreferrer">Consumer / existing H.E.R surface → her2.ai</a>
       </div>
     </section>
   </main>
 
   <footer class="site-footer shell">
-    <p>HER2NI® is registered in Australia.</p>
-    <p>H.E.R™, H.E.R Ring™, and One human. Many intelligences. Single voice.™ are trade marks used in connection with H.E.R.</p>
-    <p>Australian provisional patent applications filed.</p>
-    <p>No government endorsement, regulatory approval, certification or autonomous decision authority is claimed.</p>
+    <!-- Company identification required on the website of a Georgian LLC:
+         Law of Georgia on Entrepreneurs No. 875-Vრს-Xმპ (2 Aug 2021), Art. 17(1) and 17(5)
+         — brand name, legal address, identification number. Do not remove. -->
+    <address class="legal-entity">
+      <strong>HER2NI LLC</strong> <span class="ka">შპს ჰერ2ენაი</span><br />
+      Identification No. 404813975<br />
+      Sakartvelo (Georgia), Tbilisi, Krtsanisi district, Nino and Ilia Nakashidze Street N 1,
+      (former Avlev) Building N3, Apartment N3
+    </address>
+    <p>HER2NI® is a registered trade mark in Australia. H.E.R™, H.E.R Ring™ and One human. Many intelligences. Single voice.™ are trade marks used in connection with H.E.R.</p>
+    <p>Australian provisional patent applications filed.<br>HER2NI © 2026. All rights reserved.</p>
+    <p>HER2NI LLC claims no government affiliation, endorsement, regulatory approval, certification or autonomous decision authority.<br /><br /><a href="privacy.html">Privacy</a></p>
   </footer>
 </body>
 </html>
