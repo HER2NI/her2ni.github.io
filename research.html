@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HER2NI Research — Interaction Observability &amp; Evaluation for LLM &amp; Multi-Agent AI Systems</title>
+
+  <!-- Basic SEO -->
+  <meta name="description" content="HER2NI is a model-agnostic interaction observability protocol for LLM and multi-agent systems, focused on trajectory stability, drift, contradiction, and coordination dynamics." />
+  <meta name="author" content="HER2NI Research" />
+  <link rel="canonical" href="https://her2ni.ai/research.html" />
+
+  <!-- Icons / Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/her_helix_32.png" />
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/her_helix_64.png" />
+  <link rel="icon" type="image/png" sizes="128x128" href="assets/her_helix_128.png" />
+  <link rel="icon" type="image/png" sizes="256x256" href="assets/her_helix_256.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/her_helix_512.png" />
+  <link rel="apple-touch-icon" href="assets/her_helix_256.png" />
+  <!-- Optional: for future mobile / PWA use -->
+  <!-- <link rel="apple-touch-icon" href="assets/her2ni_symbol_256.png" /> -->
+
+  <!-- Simple, self-contained styles -->
+  <style>
+    :root {
+      --bg: #050814;
+      --bg-card: #0b1020;
+      --bg-card-alt: #0f1526;
+      --accent: #4fd1c5;
+      --accent-soft: rgba(79, 209, 197, 0.12);
+      --accent-pill: rgba(79, 209, 197, 0.2);
+      --text-main: #f7fafc;
+      --text-muted: #a0aec0;
+      --border-soft: rgba(255, 255, 255, 0.06);
+      --shadow-soft: 0 20px 45px rgba(0, 0, 0, 0.65);
+      --radius-lg: 18px;
+      --radius-pill: 999px;
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+                   "Segoe UI", sans-serif;
+      --transition-fast: 160ms ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background: radial-gradient(circle at top, #111827 0, #050814 55%, #020309 100%);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 40px 20px 72px;
+    }
+
+    .research-nav {
+      display: flex;
+      gap: 18px;
+      margin-bottom: 28px;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .research-nav a[aria-current="page"] {
+      color: var(--text-main);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    /* ------------------------------------------------------------
+       Header
+    ------------------------------------------------------------ */
+
+    header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 36px;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .brand-label {
+      font-size: 11px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.9;
+    }
+
+    .header-symbol {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: inline-block;
+      vertical-align: middle;
+      opacity: 0.9;
+      filter: drop-shadow(0 0 6px rgba(79, 209, 197, 0.25));
+    }
+
+    .hero-mark {
+      width: 89px;
+      height: 89px;
+      opacity: 1;
+      filter: drop-shadow(0 0 24px rgba(79, 209, 197, 0.18));
+      border-radius: 14px;
+      align-self: flex-end;
+      margin-top: 10px;
+    }
+    @media (max-width: 900px) {
+      .hero-mark { display: none; }
+    }
+
+    .brand-title {
+      font-size: 21px;
+      letter-spacing: 0.04em;
+      font-weight: 600;
+      color: #e5e7eb;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .brand-subrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .header-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+      text-align: right;
+      margin-top: 6px;
+      padding-top: 28px;
+    }
+
+    .inline-metrics {
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      margin-top: 10px;
+    }
+
+    .inline-metrics strong {
+      color: var(--accent);
+    }
+
+    .header-tag {
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-soft);
+      background: linear-gradient(120deg, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.7));
+      color: var(--text-muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .brand .header-tag {
+      margin-top: 12px;
+      box-shadow: none;
+      align-self: flex-start;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #6ee7b7 0, #22c55e 40%, #4b5563 100%);
+      box-shadow: 0 0 10px rgba(52, 211, 153, 0.75);
+    }
+
+    /* ------------------------------------------------------------
+       Layout
+    ------------------------------------------------------------ */
+
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(0, 1.1fr);
+      gap: 28px;
+      align-items: stretch;
+      margin-bottom: 36px;
+    }
+
+    @media (max-width: 900px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .header-right {
+        align-items: flex-start;
+        text-align: left;
+        padding-top: 0;
+        margin-top: 16px;
+      }
+
+      .grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .card {
+      background: radial-gradient(circle at top left, rgba(79, 209, 197, 0.12), transparent 55%),
+                  radial-gradient(circle at bottom, rgba(37, 99, 235, 0.12), transparent 52%),
+                  linear-gradient(145deg, #050816, #020309);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      padding: 24px 24px 22px;
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(16px);
+    }
+
+    .card-alt {
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.16), transparent 55%),
+                  linear-gradient(145deg, #050814, #020309);
+    }
+
+    .card-header {
+      margin-bottom: 16px;
+    }
+
+    .card-title {
+      font-size: 19px;
+      font-weight: 650;
+      line-height: 1.4;
+      color: #e5e7eb;
+    }
+
+    .card-subtitle {
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+      margin-bottom: 10px;
+    }
+
+    .badge {
+      font-size: 11px;
+      padding: 6px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      color: #cbd5f5;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px);
+    }
+
+    .badge-accent {
+      background: var(--accent-pill);
+      border-color: rgba(45, 212, 191, 0.8);
+      color: #e0fdf7;
+    }
+
+    .section-heading {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #9ca3af;
+      margin-bottom: 10px;
+    }
+
+    .body-text {
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--text-muted);
+    }
+
+    .fineprint {
+      margin-top: 10px;
+      font-size: 12px;
+      line-height: 1.6;
+      color: rgba(160, 174, 192, 0.92);
+    }
+
+    .list {
+      margin-top: 6px;
+      list-style: none;
+    }
+
+    .list li {
+      position: relative;
+      padding-left: 14px;
+      margin-top: 6px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--accent);
+      font-size: 14px;
+    }
+
+    /* Link section */
+
+    .links {
+      margin-top: 18px;
+      border-top: 1px dashed rgba(148, 163, 184, 0.35);
+      padding-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 10px;
+      font-size: 13px;
+    }
+
+.link-divider {
+  grid-column: 1 / -1;
+  border-top: 1px dashed rgba(148, 163, 184, 0.35);
+  margin: 6px 0 8px;
+}
+
+.link-label.primary {
+  color: #e5e7eb;
+  font-weight: 600;
+}
+
+    .link-label {
+      color: #9ca3af;
+      margin-bottom: 3px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .link-value a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .link-value a:hover {
+      text-decoration: underline;
+    }
+
+    /* Lower content sections */
+
+    .section {
+      margin-top: 16px;
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      padding: 20px 22px 18px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .section + .section {
+      margin-top: 14px;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.2fr);
+      gap: 18px;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 900px) {
+      .section-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .pill {
+      font-size: 11px;
+      padding: 6px 11px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: #e5e7eb;
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 11px;
+      color: #6b7280;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(15, 23, 42, 0.9);
+    }
+
+    footer a {
+      color: var(--accent);
+    }
+
+    /* Hover effects */
+
+    .card,
+    .section {
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+    }
+
+    .card:hover,
+    .section:hover {
+      transform: translateY(-1px);
+      border-color: rgba(148, 163, 184, 0.55);
+      box-shadow: 0 24px 55px rgba(15, 23, 42, 0.85);
+    }
+
+    br.narrow {
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .metric-accent { color: var(--accent); font-weight: 650; }
+    .metric-accent strong { color: var(--accent); }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <nav class="research-nav" aria-label="Primary navigation">
+      <a href="./">H.E.R</a>
+      <a href="research.html" aria-current="page">Research</a>
+    </nav>
+
+    <!-- Header -->
+    <header>
+      <div class="brand">
+        <div class="brand-label">
+          <img src="assets/her_helix_128.png" alt="HER2NI symbol" class="header-symbol" />
+          HER2NI RESEARCH
+        </div>
+
+        <div class="brand-title">
+          Interaction Observability &amp; Evaluation for LLM &amp; Multi-Agent AI Systems
+        </div>
+
+        <div class="brand-subrow">
+          <div class="subtitle">
+            Model-agnostic interaction telemetry for analysing trajectory stability, drift,
+            contradiction, and coordination dynamics in complex AI systems.
+          </div>
+        </div>
+        <div class="brand-subrow" style="margin-top:4px;">
+          <div class="subtitle" style="font-size:12px; opacity:0.85;">
+            Designed to complement existing model-level evaluation metrics with
+            interaction-level observability (evidence-only layer; no model modification).
+          </div>
+        </div>
+        
+       <div class="brand-subrow" style="margin-top:4px;">
+         <div class="subtitle" style="font-size:12px; opacity:0.85;">
+           HER2NI is a model-agnostic interaction-infrastructure telemetry protocol for coherence dynamics in complex distributed systems.<br>
+           The protocol is an observability/telemetry layer; it does not prescribe actions or enforce outcomes.
+         </div>
+       </div>
+
+        <div class="header-tag">
+          <span class="dot"></span>
+          ACTIVE RESEARCH PROTOCOL
+        </div>
+
+        <div class="brand-subrow" style="margin-top:10px;">
+          <div class="subtitle" style="font-size:13px; opacity:0.92;">
+            <strong>&nbsp;Commercial implementation:</strong><br>
+            <a href="https://her2.ai" target="_blank" rel="noopener noreferrer">&nbsp;<strong>H.E.R — human-facing intelligence and verifiable decision provenance</strong></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <div class="inline-metrics">
+          <p style="font-weight: bold;">EXAMPLE STATE: &nbsp;</p><br class="narrow">
+          <strong>C<span style="font-size:11px;">s</span> ≈ 0.83</strong> ·
+          <strong>S<span style="font-size:11px;">s</span> ≈ 0.91</strong> ·
+          <strong>H<span style="font-size:11px;">s</span> ≈ 0.88 &nbsp;</strong><br>
+          <strong>H<span style="font-size:11px;">s</span>(t) ≈ 0.72 &nbsp;</strong>
+        </div>
+
+        <img src="assets/her_helix_256.png" alt="HER helix" class="hero-mark" />
+      </div>
+    </header>
+
+    <!-- Top grid: protocol + current work -->
+    <section class="grid">
+      <!-- Left card: Protocol overview -->
+      <article class="card">
+        <div class="card-header">
+          <h1 class="card-title">HER2NI: Human–Emergent Resonance to Neural Intelligence</h1>
+          <p class="card-subtitle">
+            HER2NI is a protocol for representing, encoding, and exchanging coherence metrics between humans and AI systems.
+            It defines model-agnostic metrics for interaction stability and provides a foundation for safety-aligned human–AI collaboration.
+          </p>
+
+          <div class="badge-row">
+            <span class="badge-accent">
+              HER2NI Coherence (C<span style="font-size:11px;">s</span>, S<span style="font-size:11px;">s</span>, H<span style="font-size:11px;">s</span>) &amp; Trajectory H<span style="font-size:11px;">s</span>(t) Metrics
+            </span>
+          </div>
+
+          <div class="badge-row">
+            <span class="badge">Interaction Stability</span>
+            <span class="badge">Safety-Oriented AI</span>
+            <span class="badge">Model-Agnostic Protocol</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="section-heading">Research Focus</div>
+          <p class="body-text">HER2NI provides interaction-level observability across multi-turn AI systems.</p>
+          <ul class="list">
+            <li>Defining interaction-level coherence metrics for human–AI interaction.</li>
+            <li>Detecting drift, contradiction, and collapse in multi-turn dialogue.</li>
+            <li>Studying coherence scaffolding dynamics in multi-turn interaction.</li>
+            <li>Providing open, implementation-agnostic specifications for evaluation.</li>
+          </ul>
+        </div>
+
+        <div class="links">
+          <div>
+            <div class="link-label primary">HER2NI Protocol (v1.0)</div>
+            <div class="link-value">
+              <a href="assets/HER2NI_Protocol_v1.0.pdf" target="_blank" rel="noopener noreferrer">
+                Download PDF (protocol)
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <div class="link-label primary">Protocol paper (Zenodo)</div>
+            <div class="link-value">
+              <a href="https://zenodo.org/records/17844407" target="_blank" rel="noopener noreferrer">
+                zenodo.org/records/17844407
+              </a>
+            </div>
+          </div>
+
+<div class="link-divider"></div>
+
+<div>
+  <div class="link-label primary">H.E.R — human-facing intelligence and verifiable decision provenance</div>
+  <div class="link-value">
+    <a href="https://her2.ai" target="_blank" rel="noopener noreferrer">
+      HER₂ — her2.ai
+    </a>
+  </div>
+</div>
+
+<div class="link-divider"></div>
+
+          <div>
+            <div class="link-label">HER2NI-A2A (Agent–Agent Profile)</div>
+            <div class="link-value">
+              <a href="assets/HER2NI_A2A_v0.1.pdf" target="_blank" rel="noopener noreferrer">
+                Download PDF (v0.1)
+              </a>
+            </div>
+            <div class="link-value" style="margin-top:4px; font-size:12px; opacity:0.85;">
+              <a href="https://doi.org/10.5281/zenodo.17957532" target="_blank" rel="noopener noreferrer">
+                Digital Object Identifier (DOI)
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <div class="link-label">HER2NI-EXPERIMENTAL (v0.1)</div>
+            <div class="link-value">
+              <a href="assets/HER2NI-EXPERIMENTAL-v0.1.pdf" target="_blank" rel="noopener noreferrer">
+                Download PDF (experimental)
+              </a>
+            </div>
+            <div class="link-value" style="margin-top:4px; font-size:12px; opacity:0.85;">
+              <a href="https://doi.org/10.5281/zenodo.17924574" target="_blank" rel="noopener noreferrer">
+                Digital Object Identifier (DOI)
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <div class="link-label">HER-Field (v0.1)</div>
+            <div class="link-value">
+              <a href="assets/her-field-v0.1.pdf" target="_blank" rel="noopener noreferrer">
+                Download PDF (derived)
+              </a>
+            </div>
+            <div class="link-value" style="margin-top:4px; font-size:12px; opacity:0.85;">
+              <a href="https://doi.org/10.5281/zenodo.17919608" target="_blank" rel="noopener noreferrer">
+                Digital Object Identifier (DOI)
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <div class="link-label">HER2NI as Interaction Infrastructure (v0.1)</div>
+            <div class="link-value">
+              <a href="assets/HER2NI_Interaction_Infrastructure_v0.1.pdf" target="_blank" rel="noopener noreferrer">
+                Download PDF (position paper)
+              </a>
+            </div>
+            <div class="link-value" style="margin-top:4px; font-size:12px; opacity:0.85;">
+              <a href="https://doi.org/10.5281/zenodo.17981566" target="_blank" rel="noopener noreferrer">
+                Digital Object Identifier (DOI)
+              </a>
+            </div>
+          </div>
+          
+<div class="link-divider"></div>
+
+          <div>
+            <div class="link-label">GitHub</div>
+            <div class="link-value">
+              <a href="https://github.com/HER2NI" target="_blank" rel="noopener noreferrer">
+                github.com/HER2NI
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <div class="link-label">Contact</div>
+            <div class="link-value">
+              <a href="mailto:research@her2ni.ai">research@her2ni.ai</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Right card: current work -->
+      <article class="card card-alt">
+        <div class="card-header">
+          <h2 class="card-title">Current Focus: Structural Telemetry Geometry in Human–AI Interaction</h2>
+          <p class="card-subtitle">
+            Current research examines how HER2NI coherence metrics detect and characterise
+            the geometric structure of stability, drift, and contradiction in complex,
+            recursive dialogues. By mapping these dynamics in real time, we aim to measure 
+            and characterise stability, drift, and contradiction patterns to support safer 
+            evaluation and human oversight. The objective is to establish reliable operational
+            regimes for LLM systems functioning under high context-load or high-stakes operational dialogue,
+            improving safety, consistency, and the effectiveness of modulation frameworks
+            used in adaptive dialogue.
+          </p>
+        </div>
+
+        <div>
+          <div class="section-heading">Active Lines of Inquiry</div>
+          <ul class="list">
+            <li>Detecting early interaction drift and collapse using H<span style="font-size:11px;">s</span>(t) trajectories.</li>
+            <li>Characterising ambiguity and metaphor in cross-linguistic interaction (no private-state inference).</li>
+            <li>Evaluating tone, pacing, and abstraction adjustments under high-cognitive-load operational dialogue.</li>
+            <li>Providing metrics &amp; tools to complement existing AI assurance and safety evaluation.</li>
+          </ul>
+        </div>
+
+        <div style="margin-top:14px;">
+          <div class="section-heading">Operational &amp; Evaluation Context</div>
+          <ul class="list">
+            <li>Designed to complement existing AI risk assessment and governance frameworks.</li>
+            <li>Applicable to single-agent, multi-agent, and human–AI interaction settings.</li>
+            <li>Focused on early warning signals rather than post-hoc incident analysis.</li>
+            <li>Intended for research, evaluation, and safety-aligned deployment contexts.</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <section class="section">
+      <div class="section-heading"><strong>Commercial implementation</strong></div>
+
+      <p class="body-text">
+        H.E.R is the commercial implementation built from HER2NI research: a provider-neutral human-facing intelligence system that can coordinate independent AI routes, preserve route-level evidence and dissent, bind consequential use to authorised human review, and emit independently verifiable records.
+      </p>
+
+      <p class="body-text" style="margin-top:8px;">
+        <a href="https://her2.ai" target="_blank" rel="noopener noreferrer" style="font-weight:600;">
+          H.E.R — human-facing intelligence and verifiable decision provenance →
+        </a>
+      </p>
+</section>
+
+<section class="section" style="
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 10px 6px 4px;
+">
+  <p style="
+    font-size: 14.5px;
+    font-weight: 520;
+    text-shadow: 0 0 12px rgba(79, 209, 197, 0.12);
+    line-height: 1.6;
+    color: #e5e7eb;
+    max-width: 920px;
+    border-left: 2px solid rgba(79, 209, 197, 0.45);
+    padding-left: 12px;
+  ">
+    As interactive AI systems move from isolated models to networked, multi-agent deployments, new governance and safety challenges emerge that are not addressed by model-level evaluation alone.
+  </p>
+</section>
+
+    <!-- Policy Relevance / Why This Matters -->
+    <section class="section">
+      <div class="section-heading"><strong>Policy Relevance &amp; Governance Context</strong></div>
+
+      <p class="body-text">
+        HER2NI is designed to support existing public-sector and responsible-AI governance
+        frameworks. It does not introduce new enforcement mechanisms, optimisation objectives,
+        or automated decision authority.
+      </p>
+
+      <p class="body-text" style="margin-top:8px;">
+        Instead, HER2NI functions as an observational telemetry layer that can complement
+        risk-based approaches to AI assurance, safety evaluation, and human oversight.
+        All interpretation, intervention, and decision-making remain the responsibility
+        of human operators and institutions.
+      </p>
+
+      <p class="body-text" style="margin-top:8px;">
+        Adoption is intentionally incremental. Metrics can be introduced experimentally,
+        evaluated alongside existing monitoring, and discontinued without architectural
+        disruption. If HER2NI does not provide useful signals in a given context, that outcome
+        is itself informative.
+      </p>
+
+      <p class="body-text" style="margin-top:8px;">
+        HER2NI is therefore suitable for case-scoped engagements, research programs, and
+        early-stage regulatory engagement where increased observability is more valuable
+        than post-hoc explanation.
+      </p>
+
+      <p class="body-text" style="margin-top:8px;">
+        HER2NI does not claim authority, certification status, or compliance determination. 
+        It provides observational telemetry intended to inform, not replace, existing evaluation 
+        and governance processes.
+      </p>
+    </section>
+
+    <section class="section">
+      <div class="section-heading"><strong>Why This Matters</strong></div>
+
+      <p class="body-text">
+        As AI systems increasingly operate as networks of interacting components and agents,
+        many risks emerge not from individual model behaviour, but from interaction dynamics.
+        These include coordination breakdowns, cascading failures, over-alignment, and loss
+        of effective human oversight.
+      </p>
+
+      <p class="body-text" style="margin-top:8px;">
+        Existing evaluation and governance approaches primarily assess models, outputs, or
+        downstream impacts. HER2NI addresses a complementary gap by providing
+        <em>interaction-level observability</em>—enabling earlier detection of instability
+        before failures propagate or become externally visible.
+      </p>
+    </section>
+
+    <!-- Lower sections: HER2NI metrics + example coherence state -->
+    <div class="section-grid">
+      <section class="section">
+        <div class="section-heading"><strong>HER2NI Metrics</strong></div>
+        <p class="body-text">
+          HER2NI introduces three core metrics for cross-participant structural alignment, together with an interaction-trajectory representation:
+        </p>
+        <ul class="list">
+          <li><strong class="metric-accent">C<span style="font-size:11px;">s</span> — Human-side structural score:</strong> interaction stability, continuity, and constraint coherence.</li>
+          <li><strong class="metric-accent">S<span style="font-size:11px;">s</span> — Model-side structural score:</strong> response complexity, constraint retention, and structural load proxy.</li>
+          <li><strong class="metric-accent">H<span style="font-size:11px;">s</span> — HER structural-fit score:</strong> reduced structural fit between participants, constraints, and model response at a given interaction point.</li>
+          <li><strong class="metric-accent">H<span style="font-size:11px;">s</span>(t) — Interaction Trajectory:</strong> the temporal evolution of structural fit across multi-turn interaction.</li>
+        </ul>
+        <p class="body-text" style="margin-top:8px;">
+          Together, these metrics enable trajectory-level analysis of stability, drift, and breakdown in human–AI interaction, providing an early-warning and evaluation 
+          framework that goes beyond static outputs or single-turn assessments.
+        </p>
+      </section>
+
+      <section class="section">
+        <div class="section-heading"><strong>Example Coherence State</strong></div>
+
+        <p class="body-text">
+          The following illustrates a stable, high-coherence interaction scenario
+          computed using HER2NI metrics at a representative point along an interaction trajectory.
+        </p>
+
+        <ul class="list">
+          <li><strong class="metric-accent">C<span style="font-size:11px;">s</span> ≈ 0.83</strong> — stable human-side interaction pattern</li>
+          <li><strong class="metric-accent">S<span style="font-size:11px;">s</span> ≈ 0.91</strong> — high but stable model-side structural load</li>
+          <li><strong class="metric-accent">H<span style="font-size:11px;">s</span> ≈ 0.88</strong> — strong structural fit</li>
+        </ul>
+
+        <p class="fineprint" style="margin-top:8px;">
+          Illustrative example only. Values shown are not derived from a deployed system.
+          In practice, HER2NI evaluates the temporal evolution of these values as H<span style="font-size:11px;">s</span>(t)
+          to assess stability, drift, and breakdown across interaction over time.
+        </p>
+      </section>
+    </div>
+
+    <!-- Implementation section -->
+    <section class="section">
+      <div class="section-heading"><strong>Implementation &amp; Integration</strong></div>
+      <div class="pill-row">
+        <span class="pill">HER2NI Packet Schema (CBOR)</span>
+        <span class="pill">HER-State Drift &amp; Collapse Markers</span>
+        <span class="pill">Adaptive Instruction Profile</span>
+        <span class="pill">Structural Visualization Modes</span>
+      </div>
+      <p class="body-text">
+        The protocol is implementation-agnostic: HER2NI can be integrated into existing LLM systems, agent frameworks,
+        or evaluation pipelines.<br>
+        Reference implementations are released commercially as H.E.R on
+        <a href="https://her2.ai" target="_blank" rel="noopener noreferrer">her2.ai</a>.
+      </p>
+    </section>
+
+    <section class="section">
+      <div class="section-heading"><strong>Current Public Framing</strong></div>
+      <p class="body-text">
+        Some archived research artifacts use earlier terminology; they remain historical research records and do not describe the current H.E.R implementation.
+      </p>
+    </section>
+
+    <!-- Collaboration section -->
+    <section class="section">
+      <div class="section-heading"><strong>Collaboration</strong></div>
+      <p class="body-text">
+        HER2NI Research is open to collaborations with:
+      </p>
+      <ul class="list">
+        <li>Universities and government bodies.</li>
+        <li>AI safety, legal and evaluation teams.</li>
+        <li>Researchers studying LLM behaviour under high-load conditions.</li>
+        <li>Groups interested in cross-linguistic analysis of high-stakes, high-load interaction language (non-clinical).</li>
+        <li>Institutions exploring coherence-based and trajectory metrics for machine learning and interactive artificial intelligence.</li>
+      </ul>
+      <p class="body-text" style="margin-top:8px;">
+        For direct correspondence or research enquiries, please contact
+        <a href="mailto:research@her2ni.ai">research@her2ni.ai</a>.
+      </p>
+    </section>
+
+    <footer>
+      <div>© 2026 HER2NI LLC. HER2NI® is a registered mark. H.E.R appears without a registration symbol. Australian provisional patent applications filed. All rights reserved.</div>
+      <div>Protocol: <a href="https://zenodo.org/records/17844407" target="_blank" rel="noopener noreferrer">HER2NI v1.0</a></div>
+    </footer>
+  </main>
+
+</body>
+</html>
