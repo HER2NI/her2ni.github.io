@@ -91,6 +91,7 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 4.5rem;
       background: var(--background);
       overflow-x: hidden;
       overflow-x: clip;      /* the ring halo bleeds past the viewport edge by design:
@@ -183,7 +184,8 @@
     }
 
     .site-header {
-      position: relative;
+      position: sticky;
+      top: 0;
       z-index: 10;
       display: flex;
       align-items: center;
@@ -191,6 +193,7 @@
       gap: 2rem;
       min-height: 4.5rem;
       border-bottom: 1px solid var(--line);
+      background: var(--background);
     }
 
     .house-mark {
@@ -1020,6 +1023,10 @@
     }
 
     @media (max-width: 960px) {
+      html {
+        scroll-padding-top: 7.75rem;
+      }
+
       .site-header {
         align-items: flex-start;
         flex-direction: column;
@@ -1050,6 +1057,7 @@
     @media (max-width: 720px) {
       html {
         scroll-behavior: auto;
+        scroll-padding-top: 8.125rem;
       }
 
       .shell {
