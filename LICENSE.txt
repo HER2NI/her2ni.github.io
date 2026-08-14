@@ -1,5 +1,5 @@
-HER2NI — Human–Emergent Resonance to Neural Intelligence
-Research Protocol & Documentation
+HER2NI® / H.E.R™
+Website, Research & Documentation
 
 Copyright © 2025–2026 Steve Black and HER2NI LLC, as applicable.
 All rights reserved except for material expressly licensed otherwise below.
@@ -10,7 +10,7 @@ All rights reserved except for material expressly licensed otherwise below.
 
 This repository contains research materials, protocol specifications,
 documentation, website materials, illustrative artifacts, and other material
-relating to HER2NI (Human–Emergent Resonance to Neural Intelligence) and H.E.R.
+relating to HER2NI® (Human–Emergent Resonance to Neural Intelligence) and H.E.R™.
 
 This LICENSE.txt applies only to material that is not expressly subject to a
 different licence.
@@ -23,7 +23,7 @@ a licence already attached to a specific published work.
 2. ZENODO RESEARCH PUBLICATIONS — CC BY 4.0
 ===============================================================================
 
-The following specific HER2NI research publications have been published
+The following specific HER2NI® research publications have been published
 through Zenodo under the Creative Commons Attribution 4.0 International
 licence (CC BY 4.0):
 
@@ -99,7 +99,7 @@ grant trade-mark rights.
 
 Nothing in this repository, in the Zenodo research licences identified above,
 or in this LICENSE.txt grants any patent licence or other permission under
-any patent or patent application relating to HER2NI or H.E.R.
+any patent or patent application relating to HER2NI® or H.E.R™.
 
 Nothing here grants any right to use:
 
@@ -109,17 +109,25 @@ Nothing here grants any right to use:
 
   H.E.R Ring™;
 
+  Intelligence Synthesis™;
+
+  Many intelligences. One voice.™;
+
+  Many intelligences. Single voice.™;
+
   One human. Many intelligences. Single voice.™;
 
-or any other HER2NI or H.E.R trade mark, service mark, product identity,
+or any other HER2NI® or H.E.R™ trade mark, service mark, product identity,
 source identifier, or confusingly similar designation except as required for
 truthful attribution, reference, or other use permitted by applicable law.
 
 HER2NI® is an Australian registered trade mark owned by Steve Black.
 
-H.E.R™, H.E.R Ring™, and
+H.E.R™, H.E.R Ring™, Intelligence Synthesis™,
+Many intelligences. One voice.™,
+Many intelligences. Single voice.™, and
 One human. Many intelligences. Single voice.™
-are used as trade marks in connection with H.E.R.
+are claimed and used as trade marks in connection with H.E.R™.
 
 
 ===============================================================================
@@ -156,8 +164,8 @@ material that is not contained within those licensed works, including:
 
   credentials, infrastructure, or private operational material.
 
-Research access to HER2NI publications does not constitute access to or a
-commercial licence for H.E.R.
+Research access to HER2NI® publications does not constitute access to or a
+commercial licence for H.E.R™.
 
 
 ===============================================================================
@@ -171,10 +179,10 @@ For that material, permission is granted to:
 
   - read, view, and reference the material;
 
-  - cite HER2NI material in academic, policy, technical, legal, or other
+  - cite HER2NI® material in academic, policy, technical, legal, or other
     legitimate work;
 
-  - link to official HER2NI websites and DOI records;
+  - link to official HER2NI® websites and DOI records;
 
   - make any use independently permitted by applicable law.
 
@@ -187,11 +195,11 @@ not granted to:
 
   - reproduce, adapt, or republish proprietary documentation or software;
 
-  - use HER2NI or H.E.R branding, names, marks, or source identifiers as
+  - use HER2NI® or H.E.R™ branding, names, marks, or source identifiers as
     though a third-party product or service were official, certified,
-    endorsed, authorised, or supplied by HER2NI;
+    endorsed, authorised, or supplied by HER2NI®;
 
-  - represent HER2NI materials or systems as certified, government-approved,
+  - represent HER2NI® materials or systems as certified, government-approved,
     endorsed, accredited, or otherwise approved where no such status exists;
 
   - train, fine-tune, or commercially benchmark systems using proprietary
@@ -200,20 +208,20 @@ not granted to:
 
   - obtain access to proprietary H.E.R software, implementations, commercial
     systems, or confidential material merely by reason of access to this
-    repository or to HER2NI research publications.
+    repository or to HER2NI® research publications.
 
 
 ===============================================================================
 6. RESEARCH AND COMMERCIAL DISTINCTION
 ===============================================================================
 
-HER2NI Research records the research and protocol lineage from which H.E.R
+HER2NI® Research records the research and protocol lineage from which H.E.R™
 developed.
 
-H.E.R is the commercial human-facing intelligence system developed and
+H.E.R™ is the commercial human-facing intelligence system developed and
 distributed separately.
 
-Publication of HER2NI research does not mean that proprietary H.E.R source,
+Publication of HER2NI® research does not mean that proprietary H.E.R™ source,
 implementations, services, or confidential technical material are
 open-source or publicly licensed.
 
@@ -222,8 +230,8 @@ open-source or publicly licensed.
 7. NO CERTIFICATION OR ENDORSEMENT
 ===============================================================================
 
-Nothing in this repository or in a HER2NI research publication constitutes
-a representation that HER2NI, H.E.R, or any implementation is:
+Nothing in this repository or in a HER2NI® research publication constitutes
+a representation that HER2NI®, H.E.R™, or any implementation is:
 
   government endorsed;
 
@@ -246,17 +254,17 @@ Any such status must be established separately and expressly.
 8. OFFICIAL REFERENCES
 ===============================================================================
 
-Institutional H.E.R:
+Institutional H.E.R™:
 https://her2ni.ai
 
-HER2NI Protocol:
+HER2NI® Protocol:
 https://doi.org/10.5281/zenodo.17844407
 
 Research correspondence:
 research@her2ni.ai
 
 Commercial or licensing enquiries:
-licensing@her2.ai
+her@her2ni.ai
 
 
 ===============================================================================
@@ -264,7 +272,7 @@ licensing@her2.ai
 ===============================================================================
 
 If there is any uncertainty about whether a particular file is one of the
-CC BY 4.0 publications identified above or is proprietary HER2NI / H.E.R
+CC BY 4.0 publications identified above or is proprietary HER2NI® / H.E.R™
 material, contact:
 
 research@her2ni.ai
