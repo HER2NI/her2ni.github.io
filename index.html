@@ -564,7 +564,7 @@
       padding: 0;
       border-top: 1px solid var(--line-strong);
       list-style: none;
-      counter-reset: route;
+      counter-reset: route -1;
     }
 
     .flow li {
@@ -587,6 +587,78 @@
       font-size: 0.68rem;
     }
 
+    .flow li.flow-focus {
+      color: var(--cyan);
+      font-weight: 600;
+      text-shadow:
+        0 0 7px rgba(145, 221, 255, 0.42),
+        0 0 18px rgba(19, 137, 255, 0.22);
+      background:
+        linear-gradient(
+          90deg,
+          rgba(19, 137, 255, 0.08),
+          transparent 72%
+        );
+      transition:
+        color 140ms ease,
+        text-shadow 140ms ease;
+    }
+
+    .flow li.flow-focus::before {
+      color: var(--cyan);
+      text-shadow:
+        0 0 6px rgba(145, 221, 255, 0.55),
+        0 0 12px rgba(19, 137, 255, 0.28);
+      transition:
+        color 140ms ease,
+        text-shadow 140ms ease;
+    }
+
+    .flow-focus-link,
+    .flow-focus-link:hover {
+      color: inherit;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .flow-focus-link::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+    }
+
+    .flow-focus-link:focus-visible {
+      outline: none;
+    }
+
+    .flow-focus-link:focus-visible::after {
+      outline: 2px solid var(--blue-white);
+      outline-offset: -3px;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .flow li.flow-focus:hover {
+        color: var(--cyan);
+        text-shadow:
+          0 0 8px rgba(145, 221, 255, 0.58),
+          0 0 22px rgba(19, 137, 255, 0.32);
+        background:
+          linear-gradient(
+            90deg,
+            rgba(19, 137, 255, 0.13),
+            transparent 72%
+          );
+      }
+
+      .flow li.flow-focus:hover::before {
+        color: var(--cyan);
+        text-shadow:
+          0 0 7px rgba(145, 221, 255, 0.72),
+          0 0 16px rgba(19, 137, 255, 0.38);
+      }
+    }
+
     .flow li::after {
       content: "↓";
       position: absolute;
@@ -600,8 +672,39 @@
       line-height: 1;
     }
 
+    .flow li.flow-focus::after {
+      font-weight: 400;
+      text-shadow: none;
+    }
+
+    .flow li:last-child {
+      border-bottom-color: var(--line-strong);
+    }
+
     .flow li:last-child::after {
       content: none;
+    }
+
+    .workflow-sequence {
+      min-width: 0;
+    }
+
+    .workflow-boundary {
+      max-width: 42rem;
+      margin: 1.8rem 0 0 auto;
+      padding-left: 1rem;
+      border-left: 1px solid var(--line-strong);
+      color: var(--quiet);
+      font-family: var(--mono);
+      font-size: 0.67rem;
+      line-height: 1.65;
+    }
+
+    .workflow-boundary strong {
+      color: var(--cyan);
+      font-size: 0.64rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
     }
 
     .ring-section {
@@ -1436,6 +1539,13 @@
         width: 100%;
         transform: none;
       }
+
+      .workflow-boundary {
+        max-width: none;
+        margin: 1.5rem 0 0;
+        padding-left: 0.9rem;
+        line-height: 1.7;
+      }
     }
 
     @media (max-width: 640px) {
@@ -1480,6 +1590,11 @@
       }
 
       .site-header::after {
+        transition: none;
+      }
+
+      .flow li.flow-focus,
+      .flow li.flow-focus::before {
         transition: none;
       }
     }
@@ -1546,7 +1661,7 @@
       </ul>
 
       <nav class="hero-actions" aria-label="Institutional H.E.R pathways">
-        <a class="button" href="#contact">REQUEST THE PILOT <span class="button-arrow" aria-hidden="true">→</span></a>
+        <a class="button" href="#contact">REQUEST PILOT <span class="button-arrow" aria-hidden="true">→</span></a>
         <a class="button" href="#workflow">WHAT SHE DOES <span class="button-arrow" aria-hidden="true">→</span></a>
         <a class="button" href="#evidence">EVIDENCE &amp; RESEARCH <span class="button-arrow" aria-hidden="true">→</span></a>
       </nav>
@@ -1563,15 +1678,15 @@
           <img class="surface-icon capability-icon" data-icon="public-institution" src="assets/icons/institution.svg" alt="" aria-hidden="true" width="72" height="72" />
           <div class="capability-copy">
             <h3>PUBLIC-SECTOR BY DESIGN</h3>
-            <p>Built for bounded institutional use where privacy, authority, provenance and public accountability matter.</p>
+            <p>H.E.R is built for government and institutional environments where privacy, authority, provenance and public accountability matter.</p>
           </div>
         </article>
         <article class="capability-block">
           <p class="capability-code" aria-hidden="true">B / 04</p>
           <img class="surface-icon capability-icon" data-icon="governed-pilot" src="assets/icons/shield-check.svg" alt="" aria-hidden="true" width="72" height="72" />
           <div class="capability-copy">
-            <h3>GOVERNED PILOTS</h3>
-            <p>H.E.R can be evaluated through narrow, reviewable institutional workflows before any wider deployment decision.</p>
+            <h3>GOVERNED PILOT DEPLOYMENT</h3>
+            <p>H.E.R is evaluated through reviewable organisational workflows before any wider deployment decision.</p>
           </div>
         </article>
         <article class="capability-block">
@@ -1586,8 +1701,8 @@
           <p class="capability-code" aria-hidden="true">D / 04</p>
           <img class="surface-icon capability-icon" data-icon="research-lineage" src="assets/icons/research-graph.svg" alt="" aria-hidden="true" width="72" height="72" />
           <div class="capability-copy">
-            <h3>RESEARCH LINEAGE</h3>
-            <p>H.E.R is grounded in the published HER2NI research and protocol lineage, while the current institutional system is evaluated independently.</p>
+            <h3>HER2NI RESEARCH LINEAGE</h3>
+            <p>H.E.R is grounded in the HER2NI research and protocol lineage, while H.E.R system integration is evolving independently.</p>
           </div>
         </article>
       </div>
@@ -1622,24 +1737,31 @@
       <div class="system-layout">
         <div class="system-copy">
           <h2 class="section-title" id="how-title">One encounter. Multiple independent intelligences.<br>One accountable response.</h2>
-          <p>H.E.R does not ask one model to impersonate certainty.</p>
-          <p>She creates a governed encounter in which independently admitted intelligences may produce different analyses before one human-facing synthesis is produced, with material dissent and provenance preserved.</p>
+          <p>H.E.R does not ask a single model for certainty.</p>
+          <p>She creates a governed encounter with multiple independently admitted intelligences, which may produce differing analyses, before she synthesises them into one human-facing response in H.E.R’s voice, with material dissent and provenance preserved.</p>
         </div>
 
-        <ol class="flow" aria-label="Public H.E.R workflow">
-          <li>Encounter</li>
-          <li>Governed route admission</li>
-          <li>Independent intelligences</li>
-          <li>Freeze + compare</li>
-          <li>Preserve material dissent</li>
-          <li>Synthesis</li>
-          <li>Human disposition</li>
-          <li>Verifiable record</li>
-        </ol>
+        <div class="workflow-sequence">
+          <ol class="flow" aria-label="Public H.E.R workflow">
+            <li>Human input package</li>
+            <li>Governed route admission</li>
+            <li>Approved independent intelligences</li>
+            <li>Evidenced dissent preserved</li>
+            <li>Intelligent cross-route analysis</li>
+            <li class="flow-focus"><a class="flow-focus-link" href="#ring" aria-label="H.E.R’s synthesis — see H.E.R Ring">H.E.R’S SYNTHESIS</a></li>
+            <li>Human reviewer disposition</li>
+            <li>Signed cryptographic record</li>
+          </ol>
+
+          <p class="workflow-boundary">
+            <strong>PILOT RECORD BOUNDARY</strong><br />
+            In H.E.R’s initial pilot, “SIGNED CRYPTOGRAPHIC RECORD” denotes the intended terminal record state: H.E.R’s cryptographically bound execution record, preserved with its provenance and associated with the authorised human disposition. The pilot is the governed environment in which that record authority is developed and validated toward wider institutional deployment; technical signing authority is not represented here as already activated.
+          </p>
+        </div>
       </div>
     </section>
 
-    <section class="section shell ring-section" aria-labelledby="ring-title">
+    <section class="section shell ring-section" id="ring" aria-labelledby="ring-title">
       <img
         class="ring-study her-ring-image her-ring-image--quiet"
         src="assets/her_ring_quiet_alpha_v2.png"
@@ -1669,7 +1791,7 @@
         <p class="authority-note">H.E.R is designed to preserve those distinctions and keep consequential disposition with an authorised human acting for the institution.</p>
         <section class="truth-boundary" aria-labelledby="truth-boundary-title">
           <h3 id="truth-boundary-title">TRUTH BOUNDARY</h3>
-          <p>“Evidenced dissent” means that independently generated route material and its provenance are preserved under governed custody with cryptographic integrity binding, including distinct contribution content where present. In the initial pilot, H.E.R does not infer or authenticate semantic agreement or disagreement between intelligences. Model-authored synthesis may contain relational language; such language is not an authenticated H.E.R finding.</p>
+          <p>“Evidenced dissent” means that independently generated route material and its provenance are preserved under governed custody with cryptographic integrity binding, including distinct contribution content where present. In the initial pilot, H.E.R does not infer or authenticate semantic agreement or disagreement between intelligences. Model-authored synthesis may contain relational language; such language is not authenticated by H.E.R.</p>
         </section>
       </div>
     </section>
@@ -1756,7 +1878,7 @@
       </div>
       <div class="contact-copy">
         <p>HER2NI is available for discussion with government, legal, research, assurance and private organisations considering a bounded evaluation or pilot program.</p>
-        <a class="contact-address" href="mailto:her@her2ni.ai?subject=H.E.R%20institutional%20enquiry">her@her2ni.ai</a>
+        <a class="contact-address" href="mailto:her@her2ni.ai?subject=H.E.R%20enquiry">her@her2ni.ai</a>
         <a class="secondary-link" href="https://her2.ai" rel="noopener noreferrer">Consumer / existing H.E.R surface → her2.ai</a>
       </div>
     </section>
@@ -1868,4 +1990,5 @@
     })();
   </script>
 </body>
+<!-- ★ #4Win -->
 </html>
