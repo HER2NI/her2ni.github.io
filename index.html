@@ -9,10 +9,13 @@
   <meta name="theme-color" content="#03080c" />
   <link rel="canonical" href="https://her2ni.ai/" />
 
-  <!-- Fonts are self-hosted. This page makes NO third-party requests: no CDN,
-       no analytics, no scripts, no cookies. Do not reintroduce a Google Fonts
-       <link> — it would send every visitor's IP address to a third party and
-       break the claim made on the privacy page. Both faces are SIL OFL. -->
+  <!-- Fonts and assets are self-hosted. This page makes no third-party requests:
+       no CDN, analytics, cookies, tracking pixels or persistent browser storage.
+       A small inline presentation script updates scroll-aware navigation state only;
+       it emits no network traffic and stores no user data. Do not reintroduce a
+       third-party font/CDN link — doing so would send visitor network metadata to
+       another operator and invalidate the privacy posture documented on privacy.html.
+  -->
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/archivo-latin-var.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/jetbrains-mono-latin-var.woff2" crossorigin />
 
@@ -187,6 +190,8 @@
       position: sticky;
       top: 0;
       z-index: 10;
+      --nav-indicator-x: 0px;
+      --nav-indicator-width: 0px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -249,19 +254,24 @@
       color: var(--ink);
     }
 
-    .site-nav a:first-child {
+    .site-nav a.is-active {
       color: var(--ink);
     }
 
-    .site-nav a:first-child::after {
+    .site-header::after {
       content: "";
       position: absolute;
-      right: 0;
-      bottom: -1.66rem;
+      bottom: 0;
       left: 0;
+      width: var(--nav-indicator-width);
       height: 1px;
+      transform: translateX(var(--nav-indicator-x));
       background: linear-gradient(90deg, var(--cyan), var(--blue));
       box-shadow: 0 0 8px rgba(72, 184, 255, 0.65);
+      pointer-events: none;
+      transition:
+        transform 260ms cubic-bezier(.2, .8, .2, 1),
+        width 260ms cubic-bezier(.2, .8, .2, 1);
     }
 
     .hero {
@@ -833,6 +843,30 @@
       font-size: 1.04rem;
     }
 
+    .truth-boundary {
+      max-width: 50rem;
+      margin: 2rem 0 0;
+      padding-left: 1.1rem;
+      border-left: 1px solid var(--line-strong);
+      font-family: var(--mono);
+    }
+
+    .truth-boundary h3 {
+      margin: 0;
+      color: var(--cyan);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      line-height: 1.5;
+    }
+
+    .truth-boundary p {
+      margin: 0.8rem 0 0;
+      color: var(--muted);
+      font-size: 0.76rem;
+      line-height: 1.75;
+    }
+
     .evidence-panel {
       display: grid;
       grid-template-columns: minmax(0, 0.66fr) minmax(0, 1.34fr);
@@ -1086,7 +1120,7 @@
         font-size: 0.62rem;
       }
 
-      .site-nav a:first-child::after {
+      .site-header::after {
         content: none;
       }
 
@@ -1444,6 +1478,10 @@
       html {
         scroll-behavior: auto;
       }
+
+      .site-header::after {
+        transition: none;
+      }
     }
   </style>
 </head>
@@ -1464,8 +1502,8 @@
          uppercase only in nav and section titles. -->
     <nav class="site-nav" aria-label="Primary navigation">
       <a href="#her">H.E.R</a>
-      <a href="#how-it-works">What she does</a>
-      <a href="#institutional">Institutional</a>
+      <a href="#governance">Governance</a>
+      <a href="#workflow">What she does</a>
       <a href="#evidence">Evidence</a>
       <a href="#research">Research</a>
       <a href="#contact">Contact</a>
@@ -1508,14 +1546,16 @@
       </ul>
 
       <nav class="hero-actions" aria-label="Institutional H.E.R pathways">
-        <a class="button" href="#contact">INSTITUTIONAL PILOTS <span class="button-arrow" aria-hidden="true">→</span></a>
-        <a class="button" href="#how-it-works">WHAT SHE DOES <span class="button-arrow" aria-hidden="true">→</span></a>
+        <a class="button" href="#contact">REQUEST THE PILOT <span class="button-arrow" aria-hidden="true">→</span></a>
+        <a class="button" href="#workflow">WHAT SHE DOES <span class="button-arrow" aria-hidden="true">→</span></a>
         <a class="button" href="#evidence">EVIDENCE &amp; RESEARCH <span class="button-arrow" aria-hidden="true">→</span></a>
       </nav>
     </section>
 
-    <section class="institutional-front shell" id="institutional" aria-labelledby="institutional-title">
-      <h2 class="section-label" id="institutional-title">H.E.R FOR INSTITUTIONS</h2>
+    <!-- Legacy fragment alias; canonical target remains #governance. -->
+    <div id="institutional" aria-hidden="true"></div>
+    <section class="institutional-front shell" id="governance" aria-labelledby="governance-title">
+      <h2 class="section-label" id="governance-title">H.E.R GOVERNANCE</h2>
 
       <div class="capability-grid">
         <article class="capability-block">
@@ -1575,7 +1615,9 @@
       </section>
     </section>
 
-    <section class="section shell" id="how-it-works" aria-labelledby="how-title">
+    <!-- Legacy fragment alias; canonical target remains #workflow. -->
+    <div id="how-it-works" aria-hidden="true"></div>
+    <section class="section shell" id="workflow" aria-labelledby="how-title">
       <p class="section-label">WHAT SHE DOES</p>
       <div class="system-layout">
         <div class="system-copy">
@@ -1609,9 +1651,9 @@
       />
       <div class="ring-copy">
         <p class="section-label">H.E.R RING™</p>
-        <h2 class="section-title" id="ring-title">A persistent identity for governed interaction.</h2>
-        <p>The H.E.R Ring™ is the persistent visual identity of H.E.R.</p>
-        <p>Ring state is coded to correspond to governed H.E.R interaction conditions rather than random animation.</p>
+        <h2 class="section-title" id="ring-title">A persistent identity for your governed AI interactions.</h2>
+        <p>H.E.R Ring™ is the persistent visual identity of H.E.R.</p>
+        <p>The state of H.E.R Ring™ is coded to correspond to governed H.E.R interaction conditions rather than random animation.</p>
         <p class="ring-note">Patents pending.</p>
       </div>
     </section>
@@ -1625,6 +1667,10 @@
           <p>Synthesis is not institutional approval.</p>
         </div>
         <p class="authority-note">H.E.R is designed to preserve those distinctions and keep consequential disposition with an authorised human acting for the institution.</p>
+        <section class="truth-boundary" aria-labelledby="truth-boundary-title">
+          <h3 id="truth-boundary-title">TRUTH BOUNDARY</h3>
+          <p>“Evidenced dissent” means that independently generated route material and its provenance are preserved under governed custody with cryptographic integrity binding, including distinct contribution content where present. In the initial pilot, H.E.R does not infer or authenticate semantic agreement or disagreement between intelligences. Model-authored synthesis may contain relational language; such language is not an authenticated H.E.R finding.</p>
+        </section>
       </div>
     </section>
 
@@ -1651,8 +1697,8 @@
       <div class="lineage-top">
         <h2 class="section-title" id="research-title">The research record remains visible.</h2>
         <div class="lineage-statement">
-          <p>H.E.R is the institutional system.</p>
-          <p>HER2NI Research records the research and protocol lineage from which she developed, including Lens to Artificial Intelligence.</p>
+          <p>H.E.R is the system.</p>
+          <p>HER2NI is the research and protocol lineage from which she developed, as a lens to Artificial Intelligence.</p>
         </div>
       </div>
 
@@ -1705,11 +1751,11 @@
 
     <section class="section shell contact" id="contact" aria-labelledby="contact-title">
       <div>
-        <p class="section-label">INSTITUTIONAL ENQUIRIES</p>
-        <h2 class="section-title" id="contact-title">Start with a bounded question.</h2>
+        <p class="section-label">INSTITUTIONAL & PRIVATE ENQUIRIES</p>
+        <h2 class="section-title" id="contact-title">Start with a single question.</h2>
       </div>
       <div class="contact-copy">
-        <p>H.E.R is available for discussion with government, legal, research, assurance and other institutions considering bounded evaluation or pilot work.</p>
+        <p>HER2NI is available for discussion with government, legal, research, assurance and private organisations considering a bounded evaluation or pilot program.</p>
         <a class="contact-address" href="mailto:her@her2ni.ai?subject=H.E.R%20institutional%20enquiry">her@her2ni.ai</a>
         <a class="secondary-link" href="https://her2.ai" rel="noopener noreferrer">Consumer / existing H.E.R surface → her2.ai</a>
       </div>
@@ -1730,5 +1776,96 @@
     <p>Australian provisional patent applications filed.<br>HER2NI © 2026. All rights reserved.</p>
     <p>HER2NI LLC claims no government affiliation, endorsement, regulatory approval, certification or autonomous decision authority.<br /><br /><a href="privacy.html">Privacy</a></p>
   </footer>
+
+  <script>
+    (() => {
+      const nav = document.querySelector(".site-nav");
+      const header = document.querySelector(".site-header");
+      if (!nav || !header) return;
+
+      const items = [...nav.querySelectorAll('a[href^="#"]')]
+        .map(link => ({
+          link,
+          section: document.querySelector(link.getAttribute("href"))
+        }))
+        .filter(item => item.section);
+      if (!items.length) return;
+
+      let current = null;
+      let ticking = false;
+
+      function activate(item) {
+        if (current !== item) {
+          for (const candidate of items) {
+            const active = candidate === item;
+            candidate.link.classList.toggle("is-active", active);
+
+            if (active) {
+              candidate.link.setAttribute("aria-current", "location");
+            } else {
+              candidate.link.removeAttribute("aria-current");
+            }
+          }
+
+          current = item;
+        }
+
+        const headerRect = header.getBoundingClientRect();
+        const linkRect = item.link.getBoundingClientRect();
+
+        header.style.setProperty(
+          "--nav-indicator-x",
+          `${linkRect.left - headerRect.left}px`
+        );
+
+        header.style.setProperty(
+          "--nav-indicator-width",
+          `${linkRect.width}px`
+        );
+      }
+
+      function update() {
+        const threshold = header.getBoundingClientRect().bottom + 24;
+        let active = items[0];
+
+        for (const item of items) {
+          if (item.section.getBoundingClientRect().top <= threshold) {
+            active = item;
+          } else {
+            break;
+          }
+        }
+
+        if (
+          window.innerHeight + window.scrollY >=
+          document.documentElement.scrollHeight - 2
+        ) {
+          active = items[items.length - 1];
+        }
+
+        activate(active);
+        ticking = false;
+      }
+
+      function requestUpdate() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+
+      window.addEventListener("scroll", requestUpdate, { passive: true });
+      window.addEventListener("resize", requestUpdate);
+      window.addEventListener("hashchange", requestUpdate);
+      window.addEventListener("pageshow", requestUpdate);
+      nav.addEventListener("scroll", requestUpdate, { passive: true });
+      window.addEventListener("load", requestUpdate);
+
+      if (document.fonts) {
+        document.fonts.ready.then(requestUpdate);
+      }
+
+      requestUpdate();
+    })();
+  </script>
 </body>
 </html>
