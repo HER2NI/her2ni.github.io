@@ -270,7 +270,7 @@
       flex: none;
       display: inline-flex;
       align-items: flex-start;
-      gap: 0.10em;
+      gap: 0;
       color: #eaf2ff;
       font-family: var(--display);
       font-size: 1.1875rem;
@@ -281,8 +281,34 @@
       text-decoration: none;
     }
 
+    .house-home {
+      display: inline-flex;
+      align-items: flex-start;
+      gap: 0.10em;
+      color: inherit;
+    }
+
     .house-two {
       color: #7fc8f5;
+    }
+
+    .house-ncage {
+      color: #eaf2ff;
+      white-space: nowrap;
+    }
+
+    /* The whole house mark is one #her link, but hover/focus colour belongs
+       only to the HER2NI® brand token. NCAGE identity stays visually fixed. */
+    .house-mark:hover .house-home,
+    .house-mark:focus-visible .house-home,
+    .house-mark:hover .house-two,
+    .house-mark:focus-visible .house-two {
+      color: var(--cyan);
+    }
+
+    .house-mark:hover .house-ncage,
+    .house-mark:focus-visible .house-ncage {
+      color: #eaf2ff;
     }
 
     .house-reg {
@@ -1146,6 +1172,82 @@
       letter-spacing: 0.06em;
     }
 
+    .procurement-identity {
+      display: grid;
+      grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+      gap: clamp(2.5rem, 7vw, 6.5rem);
+      align-items: start;
+    }
+
+    .procurement-card {
+      border: 1px solid var(--line-strong);
+      background:
+        radial-gradient(circle at 12% 18%, rgba(19, 137, 255, 0.09), transparent 16rem),
+        rgba(5, 14, 26, 0.78);
+      padding: clamp(1.5rem, 3vw, 2.2rem);
+    }
+
+    .procurement-card dl {
+      display: grid;
+      grid-template-columns: minmax(9rem, 0.8fr) minmax(0, 1.2fr);
+      gap: 0.7rem 1.6rem;
+      margin: 0;
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      line-height: 1.55;
+    }
+
+    .procurement-card dt {
+      color: var(--quiet);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .procurement-card dd {
+      margin: 0;
+      color: #dceaf5;
+    }
+
+    .procurement-card .procurement-code {
+      color: var(--cyan);
+      font-weight: 600;
+      letter-spacing: 0.09em;
+    }
+
+    .procurement-verify {
+      color: #dceaf5;
+      text-decoration-color: rgba(145, 221, 255, 0.42);
+    }
+
+    .procurement-verify:hover,
+    .procurement-verify:focus-visible {
+      color: var(--cyan);
+    }
+
+    .procurement-copy p {
+      max-width: 43rem;
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .procurement-card + p {
+      margin-top: 1.35rem;
+    }
+
+    .procurement-copy p + p {
+      margin-top: 1rem;
+    }
+
+    .procurement-disclaimer {
+      padding-left: 1rem;
+      border-left: 1px solid var(--line-strong);
+      color: var(--quiet) !important;
+      font-family: var(--mono);
+      font-size: 0.7rem !important;
+      line-height: 1.7;
+    }
+
     .contact {
       display: grid;
       grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
@@ -1362,8 +1464,18 @@
       .ring-section,
       .evidence-panel,
       .lineage-top,
+      .procurement-identity,
       .contact {
         grid-template-columns: 1fr;
+      }
+
+      .procurement-card dl {
+        grid-template-columns: 1fr;
+        gap: 0.2rem;
+      }
+
+      .procurement-card dd + dt {
+        margin-top: 0.7rem;
       }
 
       .flow {
@@ -1670,7 +1782,9 @@
   <a class="skip-link" href="#main-content">Skip to content</a>
 
   <header class="site-header shell">
-    <a class="house-mark" href="#her" aria-label="HER2NI® home"><span class="house-word" aria-hidden="true">HER<span class="house-two">2</span>NI</span><sup class="house-reg" aria-hidden="true">®</sup></a>
+    <a class="house-mark" href="#her" aria-label="HER2NI® home">
+      <span class="house-home" aria-hidden="true"><span class="house-word">HER<span class="house-two">2</span>NI</span><sup class="house-reg">®</sup></span>
+    </a>
     <!-- VOICE RULE (MER decision, 8 Aug 2026 — do not flip back to "it"):
          H.E.R may be personified as she/her in public-facing product and experiential
          language. Personification confers no institutional, legal, decisional or
@@ -1938,6 +2052,38 @@
       <a class="archive-link" href="research.html">Research archive →</a>
     </section>
 
+    <section class="section shell procurement-identity" id="procurement" aria-labelledby="procurement-title">
+      <div>
+        <p class="section-label">PROCUREMENT IDENTITY</p>
+        <h2 class="section-title" id="procurement-title">Built for government and defence.</h2>
+      </div>
+
+      <div class="procurement-copy">
+        <div class="procurement-card" aria-label="HER2NI procurement identity">
+          <dl>
+            <dt>Organization</dt>
+            <dd>HER2NI LLC</dd>
+
+            <dt>NCAGE Code</dt>
+            <dd class="procurement-code">STVK9</dd>
+
+            <dt>Country</dt>
+            <dd>Georgia</dd>
+
+            <dt>Identification No.</dt>
+            <dd>404813975</dd>
+
+            <dt>Official record</dt>
+            <dd><a class="procurement-verify" href="https://eportal.nspa.nato.int/Codification/CageTool/cage-view/stvk9" rel="noopener noreferrer">Verify with NSPA →</a></dd>
+          </dl>
+        </div>
+
+        <p>HER2NI maintains NCAGE STVK9 for NATO Codification System and U.S. federal supplier-registration workflows. H.E.R is being developed for bounded government and defence evaluation, pilot and procurement pathways.</p>
+        <p>The current NCAGE record is independently verifiable through the NATO Support and Procurement Agency.</p>
+        <p class="procurement-disclaimer">NCAGE assignment does not imply government affiliation, endorsement, approved-vendor status, regulatory approval, certification or award.</p>
+      </div>
+    </section>
+
     <section class="section shell contact" id="contact" aria-labelledby="contact-title">
       <div>
         <p class="section-label">PRIVATE / GOVERNMENT ENQUIRIES</p>
@@ -1958,6 +2104,7 @@
     <address class="legal-entity">
       <strong>HER2NI LLC</strong> <span class="ka">შპს ჰერ2ენაი</span><br />
       Identification No. 404813975<br />
+      NCAGE <a href="https://eportal.nspa.nato.int/Codification/CageTool/cage-view/stvk9" rel="noopener noreferrer">STVK9</a><br />
       Sakartvelo (Georgia), Tbilisi, Krtsanisi district, Nino and Ilia Nakashidze Street N 1,
       (former Avlev) Building N3, Apartment N3
     </address>
